@@ -117,7 +117,7 @@ namespace compilation
    * \param cc
    *  Compiler specified by the user
    * 
-   * \param cliargs
+   * \param CFLAGS
    *  Command line arguments for the specified compiler
    * 
    * \param makename
@@ -127,7 +127,7 @@ namespace compilation
    *  Status of file IO
    * 
    */
-  STATUS inject(COMPIL cc, std::string cliargs, std::string makename)
+  STATUS inject(COMPIL cc, std::string CFLAGS, std::string makename)
   {
     std::string textin;
     textin = "CC=";
@@ -176,8 +176,8 @@ namespace compilation
     }
     
     makefile << textin << "\n";
-    textin = "CLIARGS=";
-    textin += cliargs;
+    textin = "CFLAGS=";
+    textin += CFLAGS;
     makefile << textin << "\n";
     textin = "OUTDIR=build/";
     switch (cc)

@@ -11,6 +11,9 @@ namespace doxygen
    * \brief
    *  Checks if Doxyfile is present
    * 
+   * \return
+   *  Returns if Doxyfile is present
+   * 
    */
   bool doxypresent(void)
   {
@@ -60,6 +63,9 @@ namespace doxygen
    * \brief
    *  Edits the Doxyfile, modifying it to the CS170 standards 
    *  (but keeping LaTeX)
+   * 
+   * \param projname
+   *  Name of project
    * 
    * \return
    *  Returns the status of the function
@@ -161,6 +167,9 @@ namespace doxygen
    * 
    * \brief
    *  Injects the doxyfile into the makefile
+   * 
+   * \param makename
+   *  Name of makefile to write to
    * 
    * \return
    *  Returns the status of the function

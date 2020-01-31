@@ -14,6 +14,20 @@
 #include "functions.h"    /* helper functions 
                            * (compiling, memory checks, doxygen, diff) */ 
 
+
+
+/*!
+ * 
+ * \param argc
+ *  Number of command-line swithces activated
+ * 
+ * \param argv
+ *  Array of the commands input
+ * 
+ * \return
+ *  Int 0
+ * 
+ */
 int main(int argc, const char* argv[])
 {
   using std::cout;
@@ -51,8 +65,8 @@ int main(int argc, const char* argv[])
   else if (argc != 7)
   {
     cout  << "Please enter the compiler, memory debugger, \"Project Name\", " 
-          << "name of driver (\"driver\" or \"main\"), whether to enable" 
-          << "makefile extensions, and [quiet on] \n"
+          << "Source code file extensions, "
+          << " whether to enable makefile extensions, and quiet on/off \n"
           << " Run \'ghake help\', \'ghake -h\', or \'ghake --help\' "
           << "for valid entries." << endl
           << "Exiting..." << endl;
@@ -133,7 +147,7 @@ int main(int argc, const char* argv[])
     }
   }
 
-  std::string cliargs = compilation::compilargs(cc);
+  std::string CFLAGS = compilation::compilargs(cc);
   memorydebug::MMCHK md = memorydebug::memdebug(argv[2]);
   std::string mdargs = memorydebug::memdargs(md);
 
@@ -148,7 +162,7 @@ int main(int argc, const char* argv[])
     return 0; 
   }
 
-  STATUS compstatus = compilation::inject(cc, cliargs, makefname);
+  STATUS compstatus = compilation::inject(cc, CFLAGS, makefname);
   if (compstatus == FILE_ERR || compstatus == FAILED)
   {
     cout  << "Compiler injection into makefile failed. Please make sure "

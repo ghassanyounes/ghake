@@ -33,7 +33,7 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
 	$(MAKE) doxygen
-	clear; echo "You can find the built executable in $(OUTDIR)"
+	clear; echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)

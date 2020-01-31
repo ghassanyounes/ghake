@@ -10,6 +10,13 @@
 
 #include <iostream>
 
+/*!
+ * 
+ * \brief
+ *  Status of file IO
+ * 
+ */
+
 enum STATUS {
   OK, 
   FAILED,
@@ -26,6 +33,12 @@ namespace doxygen {
 
 namespace compilation
 {
+/*!
+ * 
+ * \brief
+ *  Which compiler is being used
+ * 
+ */
   enum COMPIL {
     GCC,
     GPP,
@@ -45,6 +58,12 @@ namespace compilation
 
 namespace memorydebug
 {
+/*!
+ * 
+ * \brief
+ *  Which memory debugger is being used
+ * 
+ */
   enum MMCHK
   {
     DRMEM,
