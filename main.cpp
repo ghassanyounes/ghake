@@ -21,6 +21,7 @@ int main(int argc, const char* argv[])
   using std::cin;
   using std::endl;
 
+<<<<<<< HEAD
   std::string quieton = "on";
   std::string quietoff = "off";
   std::string help = "help";
@@ -33,14 +34,27 @@ int main(int argc, const char* argv[])
     {
       std::cout << "Valid entries are:" <<  endl
                 << "For compiler:        cc, cl, clang, clang++, gcc, & g++" << endl
+=======
+  if (argc == 2)
+  {
+    std::string help = "help";
+    if (help.compare(argv[1]) == 0)
+    {
+      std::cout << "Valid entries are:" <<  endl
+                << "For compiler:        cc, cl, clang, gcc, & g++" << endl
+>>>>>>> master
                 << "For memory debugger: drmemory & valgrind" << endl
                 << "Project name should be in \"double quotation marks\"" 
                 << endl
                 << "Type \"yes\" to append makefile with \'.COMP\', where " 
                 << "COMP is .unx, .wcl, .gnu, and .clg, depending on the " 
+<<<<<<< HEAD
                 << "compiler you choose." 
                 << endl
                 << "Quiet mode on will disable the readout of your entries."
+=======
+                << "compiler you choose."
+>>>>>>> master
                 << endl; 
      return 0;
     }
@@ -52,8 +66,13 @@ int main(int argc, const char* argv[])
   else if (argc != 7)
   {
     cout  << "Please enter the compiler, memory debugger, \"Project Name\", " 
+<<<<<<< HEAD
           << "name of driver (\"driver\" or \"main\"), whether to enable" 
           << "makefile extensions, and [quiet on] \n"
+=======
+          << "name of driver (\"driver\" or \"main\"), & whether to enable" 
+          << "makefile extensions \n"
+>>>>>>> master
           << " Run \'ghake help\', \'ghake -h\', or \'ghake --help\' "
           << "for valid entries." << endl
           << "Exiting..." << endl;
@@ -61,6 +80,7 @@ int main(int argc, const char* argv[])
   }
 
   cout  << "Ghake by Ghassan Younes (www.ghassanyounes.com)" << endl 
+<<<<<<< HEAD
         << "Attention: This program will create a makefile calling ALL "
         << "." << argv[4] << " files in the current directory. " << endl 
         << endl;
@@ -82,6 +102,20 @@ int main(int argc, const char* argv[])
               << "Makefile extension? " << argv[5] << std::endl
               << "Quiet mode?         " << argv[6] << std::endl;
   }
+=======
+        << "Attention: This program will create a makefile calling ALL .c/.cpp "
+        << "files in the current directory. " << endl << endl;
+
+  std::string makefname = "makefile";
+
+  std::cout << "You selected: " << std::endl
+            << "Compiler:           " << argv[1] << std::endl
+            << "Memory Debugger:    " << argv[2] << std::endl
+            << "Project name:       " << argv[3] << std::endl
+            << "Driver file name:   " << argv[4] << std::endl
+            << "File extension:     " << argv[5] << std::endl
+            << "Makefile extension? " << argv[6] << std::endl;
+>>>>>>> master
 
   if (doxygen::doxypresent())
   {
@@ -97,7 +131,11 @@ int main(int argc, const char* argv[])
 
   std::string yes = "yes";
 
+<<<<<<< HEAD
   if (yes.compare(argv[5])==0)
+=======
+  if (yes.compare(argv[6])==0)
+>>>>>>> master
   {
     switch (cc)
     {
@@ -117,10 +155,13 @@ int main(int argc, const char* argv[])
       makefname += ".clg";
       break;
 
+<<<<<<< HEAD
     case compilation::CLANGPP:
       makefname += ".clg";
       break;
 
+=======
+>>>>>>> master
     case compilation::UNIX:
       makefname += ".unx";
       break;
@@ -138,7 +179,11 @@ int main(int argc, const char* argv[])
 
   // INJECTION INTO MAKEFILE BEGINS HERE  
 
+<<<<<<< HEAD
   STATUS macrostat = basemake::macros(makefname, argv[3], cc, argv[4]);
+=======
+  STATUS macrostat = basemake::macros(makefname, argv[4]);
+>>>>>>> master
 
   if (macrostat == FILE_ERR || macrostat == FAILED)
   {
@@ -167,7 +212,11 @@ int main(int argc, const char* argv[])
     return 0; 
   }
 
+<<<<<<< HEAD
   STATUS dotostat = basemake::dotorules(makefname, argv[4]);
+=======
+  STATUS dotostat = basemake::dotorules(makefname, cc, argv[5]);
+>>>>>>> master
 
   if (dotostat == FILE_ERR || dotostat == FAILED)
   {
@@ -185,9 +234,13 @@ int main(int argc, const char* argv[])
     return 0;
   }
 
+<<<<<<< HEAD
   cout  << "\nTasks completed. Please make sure to add \'RUNARGS=\"...\"\' at " 
         << "the end of your make command for any runtime arguments of your "
         << "program. \nYou may also want to configure an \'ignore list\' " 
+=======
+  cout  << "\nTasks completed. You may want to configure an \'ignore list\' " 
+>>>>>>> master
         << "for your memory debugger to ignore false positives." << endl 
         << endl
         << "Thank you for using Ghake!\n\n";
