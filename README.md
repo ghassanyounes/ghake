@@ -26,3 +26,5 @@ Makefile file Extensions:
 Quiet mode?
 - on  (Will not repeat the input values to affirm them)
 - off (Will repeat the input values to affirm them)
+
+To compile from source, clone this git repo and simply run `make rebuild` from within the directory; this should generate all the necessary files -- Default compiler is g++ with ANSI C++ and all error flags set.
