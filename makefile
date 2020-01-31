@@ -29,9 +29,10 @@ DIFFILE=test0.txt
 # TARGETS ======================================================================
 
 run : $(OUTDIR)$(EXE) $(OBJECTS)
-	$(MAKE) doxygen
-	$(MAKE) memchk
+#$(MAKE) doxygen
+#$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
+	$(MAKE) doxygen
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)

@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+
+# Generated makefiles
+*.gnu
+*.unx
+*.wcl
+*.clg
+
+#Doxyfile
+Doxyfile
+
+#Doxygen Dirs
+html/
+latex/
