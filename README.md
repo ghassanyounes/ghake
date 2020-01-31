@@ -5,26 +5,26 @@ Run "ghake help" for assistance concerning the command-line switches.
 
 Usage (CLI switches in order: ): 
 Compiler options:
-- cc      [UNIX C compiler] (not tested)
-- cl      [Microsoft C compiler] (not tested)
-- clang   [LLVM C compiler]
-- clang++ [LLVM C++ compiler]
-- gcc     [GNU C Compiler]
-- g++     [GNU C++ Compiler]
+- `cc`      [UNIX C compiler] (not tested)
+- `cl`      [Microsoft C compiler] (not tested)
+- `clang`   [LLVM C compiler]
+- `clang++` [LLVM C++ compiler]
+- `gcc`     [GNU C Compiler]
+- `g++`     [GNU C++ Compiler]
 
 Memory Debugger: 
-- drmemory [Dr. Memory] (not tested)
-- valgrind [Valgrind]
+- `drmemory` [Dr. Memory] (not tested)
+- `valgrind` [Valgrind]
 
 Project name:
 - Input project title in "Double Quotation Marks"
 
 Makefile file Extensions:
-- yes ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "make -f makefile.###")
-- no  ('makefile')
+- `yes` ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "`make -f makefile.###`")
+- `no`  ('makefile')
 
 Quiet mode?
-- on  (Will not repeat the input values to affirm them)
-- off (Will repeat the input values to affirm them)
+- `on`  (Will not repeat the input values to affirm them)
+- `off` (Will repeat the input values to affirm them)
 
 To compile from source, clone this git repo and simply run `make rebuild` from within the directory; this should generate all the necessary files -- Default compiler is g++ with ANSI C++ and all error flags set.
