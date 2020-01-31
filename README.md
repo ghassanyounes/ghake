@@ -1,16 +1,16 @@
 # ghake
 A C++ Program that writes makefiles for you. Based on the programming standards of my C++ programming class.
 
-Run 
+Run "ghake help" for assistance concerning the command-line switches.
 
 Usage (CLI switches in order: ): 
 Compiler options:
-- cc      (UNIX C compiler) (not tested)
-- cl      (Microsoft C compiler) (not tested)
-- clang   (LLVM C compiler)
-- clang++ (LLVM C++ compiler)
-- gcc     (GNU C Compiler)
-- g++     (GNU C++ Compiler)
+- cc      [UNIX C compiler] (not tested)
+- cl      [Microsoft C compiler] (not tested)
+- clang   [LLVM C compiler]
+- clang++ [LLVM C++ compiler]
+- gcc     [GNU C Compiler]
+- g++     [GNU C++ Compiler]
 
 Memory Debugger: 
 - drmemory [Dr. Memory] (not tested)
@@ -20,7 +20,7 @@ Project name:
 - Input project title in "Double Quotation Marks"
 
 Makefile file Extensions:
-- yes ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "make -f makefile.###)
+- yes ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "make -f makefile.###")
 - no  ('makefile')
 
 Quiet mode?
