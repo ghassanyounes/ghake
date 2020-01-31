@@ -16,7 +16,7 @@ $(OUTDIR)doxy.o $(OUTDIR)memchk.o $(OUTDIR)makers.o
 
 EXE=test
 
-RUNARGS=g++ valgrind "Making Makefiles" main cpp yes
+RUNARGS=g++ valgrind "Making My Makefile" cpp yes off
 
 MMCHK=valgrind
 

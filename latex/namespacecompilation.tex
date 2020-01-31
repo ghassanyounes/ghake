@@ -1,0 +1,91 @@
+\hypertarget{namespacecompilation}{}\section{compilation Namespace Reference}
+\label{namespacecompilation}\index{compilation@{compilation}}
+
+
+cout, cin, endl  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecompilation_ab8b552e73f4f5a4912982468f052f089}\label{namespacecompilation_ab8b552e73f4f5a4912982468f052f089}} 
+enum {\bfseries C\+O\+M\+P\+IL} \{ \newline
+{\bfseries G\+CC}, 
+{\bfseries G\+PP}, 
+{\bfseries M\+I\+C\+R\+O\+S\+O\+FT}, 
+{\bfseries C\+L\+A\+NG}, 
+\newline
+{\bfseries C\+L\+A\+N\+G\+PP}, 
+{\bfseries U\+N\+IX}, 
+{\bfseries E\+RR}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+C\+O\+M\+P\+IL \mbox{\hyperlink{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}{compiler}} (std\+::string comp)
+\begin{DoxyCompactList}\small\item\em This function returns the compiler requested by the user. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecompilation_a02be2d606b5d56c721ad17b111d53298}{compilargs}} (C\+O\+M\+P\+IL \mbox{\hyperlink{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}{compiler}})
+\begin{DoxyCompactList}\small\item\em This function returns the compiler requested by the user. \end{DoxyCompactList}\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacecompilation_a8903c2b63e13907904d398bca6d64d9f}{inject}} (C\+O\+M\+P\+IL cc, std\+::string cliargs, std\+::string makename)
+\begin{DoxyCompactList}\small\item\em This function injects the compiler and arguments into the makefile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+cout, cin, endl 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompilation_a02be2d606b5d56c721ad17b111d53298}\label{namespacecompilation_a02be2d606b5d56c721ad17b111d53298}} 
+\index{compilation@{compilation}!compilargs@{compilargs}}
+\index{compilargs@{compilargs}!compilation@{compilation}}
+\subsubsection{\texorpdfstring{compilargs()}{compilargs()}}
+{\footnotesize\ttfamily std\+::string compilation\+::compilargs (\begin{DoxyParamCaption}\item[{C\+O\+M\+P\+IL}]{compiler }\end{DoxyParamCaption})}
+
+
+
+This function returns the compiler requested by the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em compiler} & Compiler requested by the user\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the compiler arguments to be used (C\+S170 -\/ A\+N\+SI C++ standards) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}\label{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}} 
+\index{compilation@{compilation}!compiler@{compiler}}
+\index{compiler@{compiler}!compilation@{compilation}}
+\subsubsection{\texorpdfstring{compiler()}{compiler()}}
+{\footnotesize\ttfamily C\+O\+M\+P\+IL compilation\+::compiler (\begin{DoxyParamCaption}\item[{std\+::string}]{comp }\end{DoxyParamCaption})}
+
+
+
+This function returns the compiler requested by the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & Program executable input from argv\mbox{[}\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the compiler being used 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacecompilation_a8903c2b63e13907904d398bca6d64d9f}\label{namespacecompilation_a8903c2b63e13907904d398bca6d64d9f}} 
+\index{compilation@{compilation}!inject@{inject}}
+\index{inject@{inject}!compilation@{compilation}}
+\subsubsection{\texorpdfstring{inject()}{inject()}}
+{\footnotesize\ttfamily S\+T\+A\+T\+US compilation\+::inject (\begin{DoxyParamCaption}\item[{C\+O\+M\+P\+IL}]{cc,  }\item[{std\+::string}]{cliargs,  }\item[{std\+::string}]{makename }\end{DoxyParamCaption})}
+
+
+
+This function injects the compiler and arguments into the makefile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & Program executable input from argv\mbox{[}\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the compiler being used 
+\end{DoxyReturn}

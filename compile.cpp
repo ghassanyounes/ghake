@@ -48,7 +48,12 @@ namespace compilation
     else if(comp.compare("clang") == 0)
     {
       return CLANG;
-    } else 
+    } 
+    else if(comp.compare("clang++") == 0)
+    {
+      return CLANGPP;
+    } 
+    else 
     {
       return ERR;
     }
@@ -83,7 +88,11 @@ namespace compilation
       break;
 
     case CLANG:
-      return "-ansi -O0 -g -o  \n"; //-c is applicable for .o generation
+      return "-g -O0 -v -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
+      break;
+
+    case CLANGPP:
+      return "-g -O0 -v -std=c++98 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
       break;
 
     case UNIX:
@@ -133,6 +142,10 @@ namespace compilation
       case CLANG: 
         textin += "clang\n";
         break;
+
+      case CLANGPP: 
+        textin += "clang++\n";
+        break;
       
       case UNIX: 
         textin += "cc\n";
@@ -164,23 +177,27 @@ namespace compilation
     switch (cc)
     {
       case GCC: 
-        textin += "gnu\n";
+        textin += "gnu/\n";
         break;
 
       case GPP: 
-        textin += "gnu\n";
+        textin += "gnu/\n";
         break;
       
       case MICROSOFT: 
-        textin += "win\n";
+        textin += "win/\n";
         break;
       
       case CLANG: 
-        textin += "clg\n";
+        textin += "clg/\n";
+        break;
+      
+      case CLANGPP: 
+        textin += "clg/\n";
         break;
       
       case UNIX: 
-        textin += "unx\n";
+        textin += "unx/\n";
         break;
       
       case ERR:

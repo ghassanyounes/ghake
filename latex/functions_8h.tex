@@ -1,0 +1,95 @@
+\hypertarget{functions_8h}{}\section{functions.\+h File Reference}
+\label{functions_8h}\index{functions.h@{functions.h}}
+
+
+This file contains the function declarations for the autogen makefiles.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacedoxygen}{doxygen}}
+\item 
+ \mbox{\hyperlink{namespacecompilation}{compilation}}
+\begin{DoxyCompactList}\small\item\em cout, cin, endl \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacememorydebug}{memorydebug}}
+\begin{DoxyCompactList}\small\item\em cout, cin, endl \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacebasemake}{basemake}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}\label{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}} 
+enum {\bfseries S\+T\+A\+T\+US} \{ {\bfseries OK}, 
+{\bfseries F\+A\+I\+L\+ED}, 
+{\bfseries F\+I\+L\+E\+\_\+\+E\+RR}
+ \}
+\item 
+\mbox{\Hypertarget{namespacecompilation_ab8b552e73f4f5a4912982468f052f089}\label{namespacecompilation_ab8b552e73f4f5a4912982468f052f089}} 
+enum {\bfseries C\+O\+M\+P\+IL} \{ \newline
+{\bfseries G\+CC}, 
+{\bfseries G\+PP}, 
+{\bfseries M\+I\+C\+R\+O\+S\+O\+FT}, 
+{\bfseries C\+L\+A\+NG}, 
+\newline
+{\bfseries C\+L\+A\+N\+G\+PP}, 
+{\bfseries U\+N\+IX}, 
+{\bfseries E\+RR}
+ \}
+\item 
+\mbox{\Hypertarget{namespacememorydebug_a83a201aba3c4913d2e0cca3e6f38c44f}\label{namespacememorydebug_a83a201aba3c4913d2e0cca3e6f38c44f}} 
+enum {\bfseries M\+M\+C\+HK} \{ {\bfseries D\+R\+M\+EM}, 
+{\bfseries V\+A\+LG}, 
+{\bfseries E\+RR}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacedoxygen_ac32b830653782b279d35ca231bcf8fd2}{doxygen\+::doxypresent}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if Doxyfile is present. \end{DoxyCompactList}\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacedoxygen_a5c87bdeb24d13f1c2a9024fd7e95c322}{doxygen\+::gendoxy}} (void)
+\begin{DoxyCompactList}\small\item\em Generates the Doxyfile. \end{DoxyCompactList}\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacedoxygen_a5c6a31d9a2fe806735c143e190d1f462}{doxygen\+::editdoxy}} (std\+::string projname)
+\begin{DoxyCompactList}\small\item\em Edits the Doxyfile, modifying it to the C\+S170 standards (but keeping La\+TeX) \end{DoxyCompactList}\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacedoxygen_a57d0262c121e64948a97830bb84e480c}{doxygen\+::inject}} (std\+::string makename)
+\begin{DoxyCompactList}\small\item\em Injects the doxyfile into the makefile. \end{DoxyCompactList}\item 
+C\+O\+M\+P\+IL \mbox{\hyperlink{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}{compilation\+::compiler}} (std\+::string comp)
+\begin{DoxyCompactList}\small\item\em This function returns the compiler requested by the user. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecompilation_a02be2d606b5d56c721ad17b111d53298}{compilation\+::compilargs}} (C\+O\+M\+P\+IL compiler)
+\begin{DoxyCompactList}\small\item\em This function returns the compiler requested by the user. \end{DoxyCompactList}\item 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacecompilation_a8903c2b63e13907904d398bca6d64d9f}{compilation\+::inject}} (C\+O\+M\+P\+IL cc, std\+::string cliargs, std\+::string makename)
+\begin{DoxyCompactList}\small\item\em This function injects the compiler and arguments into the makefile. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacememorydebug_a5cb626e3e90d445e061521a327f67949}\label{namespacememorydebug_a5cb626e3e90d445e061521a327f67949}} 
+M\+M\+C\+HK {\bfseries memorydebug\+::memdebug} (std\+::string debugger)
+\item 
+\mbox{\Hypertarget{namespacememorydebug_af6c6d4e122f8370f01b95be9b15bf8dd}\label{namespacememorydebug_af6c6d4e122f8370f01b95be9b15bf8dd}} 
+std\+::string {\bfseries memorydebug\+::memdargs} (M\+M\+C\+HK debugger)
+\item 
+\mbox{\Hypertarget{namespacebasemake_a5b3fc9a6d9d0bf25d2e827529b160031}\label{namespacebasemake_a5b3fc9a6d9d0bf25d2e827529b160031}} 
+S\+T\+A\+T\+US {\bfseries basemake\+::macros} (std\+::string makename, std\+::string projname, compilation\+::\+C\+O\+M\+P\+IL compiler, std\+::string extension)
+\item 
+\mbox{\Hypertarget{namespacebasemake_a6731aef50bd4fe975aeed98a4e9373d4}\label{namespacebasemake_a6731aef50bd4fe975aeed98a4e9373d4}} 
+S\+T\+A\+T\+US {\bfseries basemake\+::targets} (std\+::string makename)
+\item 
+\mbox{\Hypertarget{namespacebasemake_a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef}\label{namespacebasemake_a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef}} 
+S\+T\+A\+T\+US {\bfseries basemake\+::baserules} (std\+::string makename)
+\item 
+\mbox{\Hypertarget{namespacebasemake_a63c4ae79b21dd71b111589322b888167}\label{namespacebasemake_a63c4ae79b21dd71b111589322b888167}} 
+S\+T\+A\+T\+US \mbox{\hyperlink{namespacebasemake_a63c4ae79b21dd71b111589322b888167}{basemake\+::dotorules}} (std\+::string makename, std\+::string extension)
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Fill in this function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacebasemake_a0dfd9121ee780c0faaf7eb9ac4c58d63}\label{namespacebasemake_a0dfd9121ee780c0faaf7eb9ac4c58d63}} 
+S\+T\+A\+T\+US {\bfseries basemake\+::generatedeps} (compilation\+::\+C\+O\+M\+P\+IL compiler, std\+::string extension)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the function declarations for the autogen makefiles. 
+
+\begin{DoxyAuthor}{Author}
+Ghassan Younes 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+January 27th 2020 
+\end{DoxyDate}

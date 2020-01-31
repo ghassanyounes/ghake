@@ -31,6 +31,7 @@ namespace compilation
     GPP,
     MICROSOFT,
     CLANG,
+    CLANGPP,
     UNIX,
     ERR
   };
@@ -56,10 +57,13 @@ namespace memorydebug
 
 namespace basemake
 {
-  STATUS macros(std::string makename, std::string driver);
+  STATUS macros(std::string makename, 
+                std::string projname, 
+                compilation::COMPIL compiler, 
+                std::string extension);
   STATUS targets(std::string makename);
   STATUS baserules(std::string makename);
   STATUS dotorules(std::string makename, 
-                   compilation::COMPIL compiler, 
                    std::string extension);
+  STATUS generatedeps(compilation::COMPIL compiler, std::string extension);
 }
