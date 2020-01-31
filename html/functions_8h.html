@@ -5,10 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: functions.h File Reference</title>
+<title>Making My Makefile: functions.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Making My Makefile
    </div>
   </td>
  </tr>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions_8h.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
@@ -91,26 +115,26 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a32c27cc471df37f4fc818d65de0a56c4"><td class="memItemLeft" align="right" valign="top"><a id="a32c27cc471df37f4fc818d65de0a56c4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>STATUS</b> { <b>OK</b>, 
-<b>FAILED</b>, 
-<b>FILE_ERR</b>
+<tr class="memitem:a32c27cc471df37f4fc818d65de0a56c4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a> { <a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>, 
+<a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5">FAILED</a>, 
+<a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e">FILE_ERR</a>
  }</td></tr>
 <tr class="separator:a32c27cc471df37f4fc818d65de0a56c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8b552e73f4f5a4912982468f052f089"><td class="memItemLeft" align="right" valign="top"><a id="ab8b552e73f4f5a4912982468f052f089"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>COMPIL</b> { <br />
-&#160;&#160;<b>GCC</b>, 
-<b>GPP</b>, 
-<b>MICROSOFT</b>, 
-<b>CLANG</b>, 
+<tr class="memitem:ab8b552e73f4f5a4912982468f052f089"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089">compilation::COMPIL</a> { <br />
+&#160;&#160;<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089a18612fab061fb5a500862d24f90d5caf">compilation::GCC</a>, 
+<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089a3db140f70bad153a259160096857dd4f">compilation::GPP</a>, 
+<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089ae1c2380a9921008e2f3adc077e1f9db1">compilation::MICROSOFT</a>, 
+<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089abb9974f523fe4e75785446577ca3af4d">compilation::CLANG</a>, 
 <br />
-&#160;&#160;<b>CLANGPP</b>, 
-<b>UNIX</b>, 
-<b>ERR</b>
+&#160;&#160;<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089afddc8723698790f16d5a5b06c4565785">compilation::CLANGPP</a>, 
+<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089afd22f524e94879fe5d224f5149fd7e54">compilation::UNIX</a>, 
+<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089a4829463c6ad5e4051ec554ca82c3d7f8">compilation::ERR</a>
 <br />
  }</td></tr>
 <tr class="separator:ab8b552e73f4f5a4912982468f052f089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83a201aba3c4913d2e0cca3e6f38c44f"><td class="memItemLeft" align="right" valign="top"><a id="a83a201aba3c4913d2e0cca3e6f38c44f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>MMCHK</b> { <b>DRMEM</b>, 
-<b>VALG</b>, 
-<b>ERR</b>
+<tr class="memitem:a83a201aba3c4913d2e0cca3e6f38c44f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacememorydebug.html#a83a201aba3c4913d2e0cca3e6f38c44f">memorydebug::MMCHK</a> { <a class="el" href="namespacememorydebug.html#a83a201aba3c4913d2e0cca3e6f38c44fad3b872cd181427ed9a5d0656625b6cc7">memorydebug::DRMEM</a>, 
+<a class="el" href="namespacememorydebug.html#a83a201aba3c4913d2e0cca3e6f38c44fa9629c9886e40d05e611b93cca52fdd5b">memorydebug::VALG</a>, 
+<a class="el" href="namespacememorydebug.html#a83a201aba3c4913d2e0cca3e6f38c44faef62be0e8154bf2c47d4feba0470e3d5">memorydebug::ERR</a>
  }</td></tr>
 <tr class="separator:a83a201aba3c4913d2e0cca3e6f38c44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -119,13 +143,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ac32b830653782b279d35ca231bcf8fd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#ac32b830653782b279d35ca231bcf8fd2">doxygen::doxypresent</a> (void)</td></tr>
 <tr class="memdesc:ac32b830653782b279d35ca231bcf8fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Doxyfile is present.  <a href="namespacedoxygen.html#ac32b830653782b279d35ca231bcf8fd2">More...</a><br /></td></tr>
 <tr class="separator:ac32b830653782b279d35ca231bcf8fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c87bdeb24d13f1c2a9024fd7e95c322"><td class="memItemLeft" align="right" valign="top">STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a5c87bdeb24d13f1c2a9024fd7e95c322">doxygen::gendoxy</a> (void)</td></tr>
+<tr class="memitem:a5c87bdeb24d13f1c2a9024fd7e95c322"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a5c87bdeb24d13f1c2a9024fd7e95c322">doxygen::gendoxy</a> (void)</td></tr>
 <tr class="memdesc:a5c87bdeb24d13f1c2a9024fd7e95c322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the Doxyfile.  <a href="namespacedoxygen.html#a5c87bdeb24d13f1c2a9024fd7e95c322">More...</a><br /></td></tr>
 <tr class="separator:a5c87bdeb24d13f1c2a9024fd7e95c322"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c6a31d9a2fe806735c143e190d1f462"><td class="memItemLeft" align="right" valign="top">STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a5c6a31d9a2fe806735c143e190d1f462">doxygen::editdoxy</a> (std::string projname)</td></tr>
+<tr class="memitem:a5c6a31d9a2fe806735c143e190d1f462"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a5c6a31d9a2fe806735c143e190d1f462">doxygen::editdoxy</a> (std::string projname)</td></tr>
 <tr class="memdesc:a5c6a31d9a2fe806735c143e190d1f462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Edits the Doxyfile, modifying it to the CS170 standards (but keeping LaTeX)  <a href="namespacedoxygen.html#a5c6a31d9a2fe806735c143e190d1f462">More...</a><br /></td></tr>
 <tr class="separator:a5c6a31d9a2fe806735c143e190d1f462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57d0262c121e64948a97830bb84e480c"><td class="memItemLeft" align="right" valign="top">STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a57d0262c121e64948a97830bb84e480c">doxygen::inject</a> (std::string makename)</td></tr>
+<tr class="memitem:a57d0262c121e64948a97830bb84e480c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedoxygen.html#a57d0262c121e64948a97830bb84e480c">doxygen::inject</a> (std::string makename)</td></tr>
 <tr class="memdesc:a57d0262c121e64948a97830bb84e480c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects the doxyfile into the makefile.  <a href="namespacedoxygen.html#a57d0262c121e64948a97830bb84e480c">More...</a><br /></td></tr>
 <tr class="separator:a57d0262c121e64948a97830bb84e480c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade0240a5a26a4d43e6bc19ff6c1b1085"><td class="memItemLeft" align="right" valign="top">COMPIL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompilation.html#ade0240a5a26a4d43e6bc19ff6c1b1085">compilation::compiler</a> (std::string comp)</td></tr>
@@ -134,42 +158,67 @@ Functions</h2></td></tr>
 <tr class="memitem:a02be2d606b5d56c721ad17b111d53298"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompilation.html#a02be2d606b5d56c721ad17b111d53298">compilation::compilargs</a> (COMPIL compiler)</td></tr>
 <tr class="memdesc:a02be2d606b5d56c721ad17b111d53298"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the compiler requested by the user.  <a href="namespacecompilation.html#a02be2d606b5d56c721ad17b111d53298">More...</a><br /></td></tr>
 <tr class="separator:a02be2d606b5d56c721ad17b111d53298"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8903c2b63e13907904d398bca6d64d9f"><td class="memItemLeft" align="right" valign="top">STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompilation.html#a8903c2b63e13907904d398bca6d64d9f">compilation::inject</a> (COMPIL cc, std::string cliargs, std::string makename)</td></tr>
+<tr class="memitem:a8903c2b63e13907904d398bca6d64d9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompilation.html#a8903c2b63e13907904d398bca6d64d9f">compilation::inject</a> (COMPIL cc, std::string cliargs, std::string makename)</td></tr>
 <tr class="memdesc:a8903c2b63e13907904d398bca6d64d9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function injects the compiler and arguments into the makefile.  <a href="namespacecompilation.html#a8903c2b63e13907904d398bca6d64d9f">More...</a><br /></td></tr>
 <tr class="separator:a8903c2b63e13907904d398bca6d64d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cb626e3e90d445e061521a327f67949"><td class="memItemLeft" align="right" valign="top"><a id="a5cb626e3e90d445e061521a327f67949"></a>
-MMCHK&#160;</td><td class="memItemRight" valign="bottom"><b>memorydebug::memdebug</b> (std::string debugger)</td></tr>
+<tr class="memitem:a5cb626e3e90d445e061521a327f67949"><td class="memItemLeft" align="right" valign="top">MMCHK&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacememorydebug.html#a5cb626e3e90d445e061521a327f67949">memorydebug::memdebug</a> (std::string debugger)</td></tr>
 <tr class="separator:a5cb626e3e90d445e061521a327f67949"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6c6d4e122f8370f01b95be9b15bf8dd"><td class="memItemLeft" align="right" valign="top"><a id="af6c6d4e122f8370f01b95be9b15bf8dd"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>memorydebug::memdargs</b> (MMCHK debugger)</td></tr>
+<tr class="memitem:af6c6d4e122f8370f01b95be9b15bf8dd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacememorydebug.html#af6c6d4e122f8370f01b95be9b15bf8dd">memorydebug::memdargs</a> (MMCHK debugger)</td></tr>
 <tr class="separator:af6c6d4e122f8370f01b95be9b15bf8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b3fc9a6d9d0bf25d2e827529b160031"><td class="memItemLeft" align="right" valign="top"><a id="a5b3fc9a6d9d0bf25d2e827529b160031"></a>
-STATUS&#160;</td><td class="memItemRight" valign="bottom"><b>basemake::macros</b> (std::string makename, std::string projname, compilation::COMPIL compiler, std::string extension)</td></tr>
-<tr class="separator:a5b3fc9a6d9d0bf25d2e827529b160031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6731aef50bd4fe975aeed98a4e9373d4"><td class="memItemLeft" align="right" valign="top"><a id="a6731aef50bd4fe975aeed98a4e9373d4"></a>
-STATUS&#160;</td><td class="memItemRight" valign="bottom"><b>basemake::targets</b> (std::string makename)</td></tr>
+<tr class="memitem:aa523a1f511a285ea6d7d396cff09fb79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacememorydebug.html#aa523a1f511a285ea6d7d396cff09fb79">memorydebug::inject</a> (std::string makename)</td></tr>
+<tr class="separator:aa523a1f511a285ea6d7d396cff09fb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acea7aefc8d03ec10fff9a8c76063bda9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#acea7aefc8d03ec10fff9a8c76063bda9">basemake::macros</a> (std::string makename, std::string projname, <a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089">compilation::COMPIL</a> compiler, std::string extension, <a class="el" href="namespacememorydebug.html#a83a201aba3c4913d2e0cca3e6f38c44f">memorydebug::MMCHK</a> debugger, std::string debugargs)</td></tr>
+<tr class="separator:acea7aefc8d03ec10fff9a8c76063bda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6731aef50bd4fe975aeed98a4e9373d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#a6731aef50bd4fe975aeed98a4e9373d4">basemake::targets</a> (std::string makename)</td></tr>
 <tr class="separator:a6731aef50bd4fe975aeed98a4e9373d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef"><td class="memItemLeft" align="right" valign="top"><a id="a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef"></a>
-STATUS&#160;</td><td class="memItemRight" valign="bottom"><b>basemake::baserules</b> (std::string makename)</td></tr>
+<tr class="memitem:a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef">basemake::baserules</a> (std::string makename)</td></tr>
 <tr class="separator:a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63c4ae79b21dd71b111589322b888167"><td class="memItemLeft" align="right" valign="top"><a id="a63c4ae79b21dd71b111589322b888167"></a>
-STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#a63c4ae79b21dd71b111589322b888167">basemake::dotorules</a> (std::string makename, std::string extension)</td></tr>
-<tr class="memdesc:a63c4ae79b21dd71b111589322b888167"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: Fill in this function. <br /></td></tr>
+<tr class="memitem:a63c4ae79b21dd71b111589322b888167"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#a63c4ae79b21dd71b111589322b888167">basemake::dotorules</a> (std::string makename, std::string extension)</td></tr>
 <tr class="separator:a63c4ae79b21dd71b111589322b888167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dfd9121ee780c0faaf7eb9ac4c58d63"><td class="memItemLeft" align="right" valign="top"><a id="a0dfd9121ee780c0faaf7eb9ac4c58d63"></a>
-STATUS&#160;</td><td class="memItemRight" valign="bottom"><b>basemake::generatedeps</b> (compilation::COMPIL compiler, std::string extension)</td></tr>
+<tr class="memitem:a0dfd9121ee780c0faaf7eb9ac4c58d63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebasemake.html#a0dfd9121ee780c0faaf7eb9ac4c58d63">basemake::generatedeps</a> (<a class="el" href="namespacecompilation.html#ab8b552e73f4f5a4912982468f052f089">compilation::COMPIL</a> compiler, std::string extension)</td></tr>
 <tr class="separator:a0dfd9121ee780c0faaf7eb9ac4c58d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the function declarations for the autogen makefiles. </p>
 <dl class="section author"><dt>Author</dt><dd>Ghassan Younes </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>January 27th 2020 </dd></dl>
-</div></div><!-- contents -->
+
+<p class="definition">Definition in file <a class="el" href="functions_8h_source.html">functions.h</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a32c27cc471df37f4fc818d65de0a56c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c27cc471df37f4fc818d65de0a56c4">&#9670;&nbsp;</a></span>STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4">STATUS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a32c27cc471df37f4fc818d65de0a56c4a2bc49ec37d6a5715dd23e85f1ff5bb59"></a>OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5"></a>FAILED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e"></a>FILE_ERR&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="functions_8h_source.html#l00013">13</a> of file <a class="el" href="functions_8h_source.html">functions.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <a class="code" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>, </div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <a class="code" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5">FAILED</a>,</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  <a class="code" href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e">FILE_ERR</a></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div><div class="ttc" id="functions_8h_html_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5"><div class="ttname"><a href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5">FAILED</a></div><div class="ttdef"><b>Definition:</b> <a href="functions_8h_source.html#l00015">functions.h:15</a></div></div>
+<div class="ttc" id="functions_8h_html_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e"><div class="ttname"><a href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e">FILE_ERR</a></div><div class="ttdef"><b>Definition:</b> <a href="functions_8h_source.html#l00016">functions.h:16</a></div></div>
+<div class="ttc" id="functions_8h_html_a32c27cc471df37f4fc818d65de0a56c4a2bc49ec37d6a5715dd23e85f1ff5bb59"><div class="ttname"><a href="functions_8h.html#a32c27cc471df37f4fc818d65de0a56c4a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a></div><div class="ttdef"><b>Definition:</b> <a href="functions_8h_source.html#l00014">functions.h:14</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.15
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="functions_8h.html">functions.h</a></li>
+    <li class="footer">Generated on Fri Jan 31 2020 04:46:03 for Making My Makefile by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
 </body>
 </html>

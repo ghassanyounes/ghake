@@ -1,4 +1,4 @@
-\hypertarget{main_8cpp}{}\section{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\subsection{main.\+cpp File Reference}
 \label{main_8cpp}\index{main.cpp@{main.cpp}}
 
 
@@ -6,17 +6,16 @@ This program will autogenerate a makefile for your code, with custom C\+LI argum
 
 
 {\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$cstdlib$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include \char`\"{}functions.\+h\char`\"{}}\newline
-\subsection*{Functions}
+\subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}{main}} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em cout, cin, endl \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em File IO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\subsubsection{Detailed Description}
 This program will autogenerate a makefile for your code, with custom C\+LI arguments and a choice of memory checkers. 
 
 \begin{DoxyAuthor}{Author}
@@ -27,15 +26,220 @@ January 27th 2020
 \end{DoxyDate}
 
 
-\subsection{Function Documentation}
+\subsubsection{Function Documentation}
 \mbox{\Hypertarget{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}\label{main_8cpp_ac0f2228420376f4db7e1274f2b41667c}} 
 \index{main.cpp@{main.cpp}!main@{main}}
 \index{main@{main}!main.cpp@{main.cpp}}
-\subsubsection{\texorpdfstring{main()}{main()}}
+\paragraph{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
 
 
+File IO. 
+
 cout, cin, endl 
 
-File IO 
+Definition at line 17 of file main.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19   \textcolor{keyword}{using} std::cout;}
+\DoxyCodeLine{20   \textcolor{keyword}{using} std::cin;}
+\DoxyCodeLine{21   \textcolor{keyword}{using} std::endl;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   std::string quieton = \textcolor{stringliteral}{"on"};}
+\DoxyCodeLine{24   std::string quietoff = \textcolor{stringliteral}{"off"};}
+\DoxyCodeLine{25   std::string help = \textcolor{stringliteral}{"help"};}
+\DoxyCodeLine{26   std::string makefname = \textcolor{stringliteral}{"makefile"};}
+\DoxyCodeLine{27   std::string isquiet;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \textcolor{keywordflow}{if} (argc == 2)}
+\DoxyCodeLine{30   \{}
+\DoxyCodeLine{31     \textcolor{keywordflow}{if} (help.compare(argv[1]) == 0)}
+\DoxyCodeLine{32     \{}
+\DoxyCodeLine{33       std::cout << \textcolor{stringliteral}{"Valid entries are:"} <<  endl}
+\DoxyCodeLine{34                 << \textcolor{stringliteral}{"For compiler:        cc, cl, clang, clang++, gcc, \& g++"} << endl}
+\DoxyCodeLine{35                 << \textcolor{stringliteral}{"For memory debugger: drmemory \& valgrind"} << endl}
+\DoxyCodeLine{36                 << \textcolor{stringliteral}{"Project name should be in \(\backslash\)"double quotation marks\(\backslash\)""} }
+\DoxyCodeLine{37                 << endl}
+\DoxyCodeLine{38                 << \textcolor{stringliteral}{"Type \(\backslash\)"yes\(\backslash\)" to append makefile with \(\backslash\)'.COMP\(\backslash\)', where "} }
+\DoxyCodeLine{39                 << \textcolor{stringliteral}{"COMP is .unx, .wcl, .gnu, and .clg, depending on the "} }
+\DoxyCodeLine{40                 << \textcolor{stringliteral}{"compiler you choose."} }
+\DoxyCodeLine{41                 << endl}
+\DoxyCodeLine{42                 << \textcolor{stringliteral}{"Quiet mode on will disable the readout of your entries."}}
+\DoxyCodeLine{43                 << endl; }
+\DoxyCodeLine{44      \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{45     \}}
+\DoxyCodeLine{46     \textcolor{keywordflow}{else} }
+\DoxyCodeLine{47     \{}
+\DoxyCodeLine{48       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50   \}}
+\DoxyCodeLine{51   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (argc != 7)}
+\DoxyCodeLine{52   \{}
+\DoxyCodeLine{53     cout  << \textcolor{stringliteral}{"Please enter the compiler, memory debugger, \(\backslash\)"Project Name\(\backslash\)", "} }
+\DoxyCodeLine{54           << \textcolor{stringliteral}{"name of driver (\(\backslash\)"driver\(\backslash\)" or \(\backslash\)"main\(\backslash\)"), whether to enable"} }
+\DoxyCodeLine{55           << \textcolor{stringliteral}{"makefile extensions, and [quiet on] \(\backslash\)n"}}
+\DoxyCodeLine{56           << \textcolor{stringliteral}{" Run \(\backslash\)'ghake help\(\backslash\)', \(\backslash\)'ghake -h\(\backslash\)', or \(\backslash\)'ghake --help\(\backslash\)' "}}
+\DoxyCodeLine{57           << \textcolor{stringliteral}{"for valid entries."} << endl}
+\DoxyCodeLine{58           << \textcolor{stringliteral}{"Exiting..."} << endl;}
+\DoxyCodeLine{59     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   cout  << \textcolor{stringliteral}{"Ghake by Ghassan Younes (www.ghassanyounes.com)"} << endl }
+\DoxyCodeLine{63         << \textcolor{stringliteral}{"Attention: This program will create a makefile calling ALL "}}
+\DoxyCodeLine{64         << \textcolor{stringliteral}{"."} << argv[4] << \textcolor{stringliteral}{" files in the current directory. "} << endl }
+\DoxyCodeLine{65         << endl;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keywordflow}{if} (quieton.compare(argv[6]) != 0 \&\& quietoff.compare(argv[6]) != 0)}
+\DoxyCodeLine{68   \{}
+\DoxyCodeLine{69     cout << \textcolor{stringliteral}{"Invalid identifier for quiet mode. Must be \(\backslash\)'onn\(\backslash\)' or \(\backslash\)'off\(\backslash\)'"}}
+\DoxyCodeLine{70          << endl;}
+\DoxyCodeLine{71     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{72   \}}
+\DoxyCodeLine{73   }
+\DoxyCodeLine{74   \textcolor{keywordflow}{if} (quieton.compare(argv[6]) != 0)}
+\DoxyCodeLine{75   \{}
+\DoxyCodeLine{76     std::cout << \textcolor{stringliteral}{"You selected: "} << std::endl}
+\DoxyCodeLine{77               << \textcolor{stringliteral}{"Compiler:           "} << argv[1] << std::endl}
+\DoxyCodeLine{78               << \textcolor{stringliteral}{"Memory Debugger:    "} << argv[2] << std::endl}
+\DoxyCodeLine{79               << \textcolor{stringliteral}{"Project name:       "} << argv[3] << std::endl}
+\DoxyCodeLine{80               << \textcolor{stringliteral}{"File extension:     "} << argv[4] << std::endl}
+\DoxyCodeLine{81               << \textcolor{stringliteral}{"Makefile extension? "} << argv[5] << std::endl}
+\DoxyCodeLine{82               << \textcolor{stringliteral}{"Quiet mode?         "} << argv[6] << std::endl;}
+\DoxyCodeLine{83   \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \textcolor{keywordflow}{if} (\mbox{\hyperlink{namespacedoxygen_ac32b830653782b279d35ca231bcf8fd2}{doxygen::doxypresent}}())}
+\DoxyCodeLine{86   \{}
+\DoxyCodeLine{87     cout  << \textcolor{stringliteral}{"Warning: Doxygen file present. I will not generate a new one!"} }
+\DoxyCodeLine{88           << endl;}
+\DoxyCodeLine{89   \} }
+\DoxyCodeLine{90   \textcolor{keywordflow}{else} }
+\DoxyCodeLine{91   \{}
+\DoxyCodeLine{92     \mbox{\hyperlink{namespacedoxygen_a5c87bdeb24d13f1c2a9024fd7e95c322}{doxygen::gendoxy}}();}
+\DoxyCodeLine{93     \mbox{\hyperlink{namespacedoxygen_a5c6a31d9a2fe806735c143e190d1f462}{doxygen::editdoxy}}(argv[3]);}
+\DoxyCodeLine{94   \}}
+\DoxyCodeLine{95   \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089}{compilation::COMPIL}} cc = \mbox{\hyperlink{namespacecompilation_ade0240a5a26a4d43e6bc19ff6c1b1085}{compilation::compiler}}(argv[1]);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   std::string yes = \textcolor{stringliteral}{"yes"};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99   \textcolor{keywordflow}{if} (yes.compare(argv[5])==0)}
+\DoxyCodeLine{100   \{}
+\DoxyCodeLine{101     \textcolor{keywordflow}{switch} (cc)}
+\DoxyCodeLine{102     \{}
+\DoxyCodeLine{103     \textcolor{keywordflow}{case}  \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089a18612fab061fb5a500862d24f90d5caf}{compilation::GCC}}:}
+\DoxyCodeLine{104       makefname += \textcolor{stringliteral}{".gnu"};}
+\DoxyCodeLine{105       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{106     }
+\DoxyCodeLine{107     \textcolor{keywordflow}{case}  \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089a3db140f70bad153a259160096857dd4f}{compilation::GPP}}:}
+\DoxyCodeLine{108       makefname += \textcolor{stringliteral}{".gnu"};}
+\DoxyCodeLine{109       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{110     }
+\DoxyCodeLine{111     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089ae1c2380a9921008e2f3adc077e1f9db1}{compilation::MICROSOFT}}:}
+\DoxyCodeLine{112       makefname += \textcolor{stringliteral}{".wcl"};}
+\DoxyCodeLine{113       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089abb9974f523fe4e75785446577ca3af4d}{compilation::CLANG}}:}
+\DoxyCodeLine{116       makefname += \textcolor{stringliteral}{".clg"};}
+\DoxyCodeLine{117       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089afddc8723698790f16d5a5b06c4565785}{compilation::CLANGPP}}:}
+\DoxyCodeLine{120       makefname += \textcolor{stringliteral}{".clg"};}
+\DoxyCodeLine{121       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089afd22f524e94879fe5d224f5149fd7e54}{compilation::UNIX}}:}
+\DoxyCodeLine{124       makefname += \textcolor{stringliteral}{".unx"};}
+\DoxyCodeLine{125       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keywordflow}{case} \mbox{\hyperlink{namespacecompilation_ab8b552e73f4f5a4912982468f052f089a4829463c6ad5e4051ec554ca82c3d7f8}{compilation::ERR}}:}
+\DoxyCodeLine{128       makefname += \textcolor{stringliteral}{".ERROR"};}
+\DoxyCodeLine{129       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{132       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134   \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136   std::string cliargs = \mbox{\hyperlink{namespacecompilation_a02be2d606b5d56c721ad17b111d53298}{compilation::compilargs}}(cc);}
+\DoxyCodeLine{137   \mbox{\hyperlink{namespacememorydebug_a83a201aba3c4913d2e0cca3e6f38c44f}{memorydebug::MMCHK}} md = \mbox{\hyperlink{namespacememorydebug_a5cb626e3e90d445e061521a327f67949}{memorydebug::memdebug}}(argv[2]);}
+\DoxyCodeLine{138   std::string mdargs = \mbox{\hyperlink{namespacememorydebug_af6c6d4e122f8370f01b95be9b15bf8dd}{memorydebug::memdargs}}(md);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140   \textcolor{comment}{// INJECTION INTO MAKEFILE BEGINS HERE  }}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} macrostat = \mbox{\hyperlink{namespacebasemake_acea7aefc8d03ec10fff9a8c76063bda9}{basemake::macros}}(makefname, argv[3], cc, argv[4], md, mdargs);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   \textcolor{keywordflow}{if} (macrostat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || macrostat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{145   \{}
+\DoxyCodeLine{146     cout  << \textcolor{stringliteral}{"Macro injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{147           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{148     \textcolor{keywordflow}{return} 0; }
+\DoxyCodeLine{149   \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} compstatus = \mbox{\hyperlink{namespacecompilation_a8903c2b63e13907904d398bca6d64d9f}{compilation::inject}}(cc, cliargs, makefname);}
+\DoxyCodeLine{152   \textcolor{keywordflow}{if} (compstatus == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || compstatus == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{153   \{}
+\DoxyCodeLine{154     cout  << \textcolor{stringliteral}{"Compiler injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{155           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{156     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{157   \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} targetstat = \mbox{\hyperlink{namespacebasemake_a6731aef50bd4fe975aeed98a4e9373d4}{basemake::targets}}(makefname);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161   \textcolor{keywordflow}{if} (targetstat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || targetstat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{162   \{}
+\DoxyCodeLine{163     cout  << \textcolor{stringliteral}{"Macro injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{164           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{165     \textcolor{keywordflow}{return} 0; }
+\DoxyCodeLine{166   \}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} dotostat = \mbox{\hyperlink{namespacebasemake_a63c4ae79b21dd71b111589322b888167}{basemake::dotorules}}(makefname, argv[4]);}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170   \textcolor{keywordflow}{if} (dotostat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || dotostat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{171   \{}
+\DoxyCodeLine{172     cout  << \textcolor{stringliteral}{"File target injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{173           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{174     \textcolor{keywordflow}{return} 0; }
+\DoxyCodeLine{175   \}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} doxystatus = \mbox{\hyperlink{namespacedoxygen_a57d0262c121e64948a97830bb84e480c}{doxygen::inject}}(makefname); }
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179   \textcolor{keywordflow}{if} (doxystatus == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || doxystatus == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{180   \{}
+\DoxyCodeLine{181     cout  << \textcolor{stringliteral}{"Doxygen command injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{182           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{183     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{184   \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} memstat = \mbox{\hyperlink{namespacememorydebug_aa523a1f511a285ea6d7d396cff09fb79}{memorydebug::inject}}(makefname);}
+\DoxyCodeLine{187   \textcolor{keywordflow}{if} (memstat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || memstat == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{188   \{}
+\DoxyCodeLine{189     cout  << \textcolor{stringliteral}{"Memory Debug command injection into makefile failed. Please make "}}
+\DoxyCodeLine{190           << \textcolor{stringliteral}{"sure that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{191     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{192   \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194   \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4}{STATUS}} basetrg = \mbox{\hyperlink{namespacebasemake_a7fc24e7fc7f5c6fcc0f4454c1b6ef9ef}{basemake::baserules}}(makefname);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196   \textcolor{keywordflow}{if} (basetrg == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4ace97aa1ba9b4a75ee1dae036e815e15e}{FILE\_ERR}} || basetrg == \mbox{\hyperlink{functions_8h_a32c27cc471df37f4fc818d65de0a56c4aecedb56d1405a60c6069f4a0139bdec5}{FAILED}})}
+\DoxyCodeLine{197   \{}
+\DoxyCodeLine{198     cout  << \textcolor{stringliteral}{"Base target injection into makefile failed. Please make sure "}}
+\DoxyCodeLine{199           << \textcolor{stringliteral}{"that the makefile exists and is writeable."} << endl ;}
+\DoxyCodeLine{200     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{201   \}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203   cout  << \textcolor{stringliteral}{"\(\backslash\)nTasks completed. Please make sure to add \(\backslash\)'RUNARGS=\(\backslash\)"...\(\backslash\)"\(\backslash\)' at "} }
+\DoxyCodeLine{204         << \textcolor{stringliteral}{"the end of your make command for any runtime arguments of your "}}
+\DoxyCodeLine{205         << \textcolor{stringliteral}{"program. \(\backslash\)nYou may also want to configure an \(\backslash\)'ignore list\(\backslash\)' "} }
+\DoxyCodeLine{206         << \textcolor{stringliteral}{"for your memory debugger to ignore false positives."} << endl }
+\DoxyCodeLine{207         << endl}
+\DoxyCodeLine{208         << \textcolor{stringliteral}{"Thank you for using Ghake!\(\backslash\)n\(\backslash\)n"};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210   \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{211 \}}
+
+\end{DoxyCode}
+
+
+References basemake\+::baserules(), compilation\+::\+C\+L\+A\+NG, compilation\+::\+C\+L\+A\+N\+G\+PP, compilation\+::compilargs(), compilation\+::compiler(), basemake\+::dotorules(), doxygen\+::doxypresent(), doxygen\+::editdoxy(), compilation\+::\+E\+RR, F\+A\+I\+L\+ED, F\+I\+L\+E\+\_\+\+E\+RR, compilation\+::\+G\+CC, doxygen\+::gendoxy(), compilation\+::\+G\+PP, memorydebug\+::inject(), compilation\+::inject(), doxygen\+::inject(), basemake\+::macros(), memorydebug\+::memdargs(), memorydebug\+::memdebug(), compilation\+::\+M\+I\+C\+R\+O\+S\+O\+FT, basemake\+::targets(), and compilation\+::\+U\+N\+IX.
+

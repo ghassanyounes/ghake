@@ -9,9 +9,9 @@
  */
 
 #include <iostream>       //! cout, cin, endl
-#include <cstring>        // strcmp
-#include <fstream>
-#include "functions.h"
+#include <cstring>        //! strcmp
+#include <fstream>        //! File I/O
+#include "functions.h"    
 
 namespace compilation
 {
@@ -48,16 +48,12 @@ namespace compilation
     else if(comp.compare("clang") == 0)
     {
       return CLANG;
-<<<<<<< HEAD
     } 
     else if(comp.compare("clang++") == 0)
     {
       return CLANGPP;
     } 
     else 
-=======
-    } else 
->>>>>>> master
     {
       return ERR;
     }
@@ -92,15 +88,11 @@ namespace compilation
       break;
 
     case CLANG:
-<<<<<<< HEAD
       return "-g -O0 -v -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
       break;
 
     case CLANGPP:
       return "-g -O0 -v -std=c++98 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
-=======
-      return "-ansi -O0 -g -o  \n"; //-c is applicable for .o generation
->>>>>>> master
       break;
 
     case UNIX:
@@ -150,13 +142,10 @@ namespace compilation
       case CLANG: 
         textin += "clang\n";
         break;
-<<<<<<< HEAD
 
       case CLANGPP: 
         textin += "clang++\n";
         break;
-=======
->>>>>>> master
       
       case UNIX: 
         textin += "cc\n";
@@ -188,7 +177,6 @@ namespace compilation
     switch (cc)
     {
       case GCC: 
-<<<<<<< HEAD
         textin += "gnu/\n";
         break;
 
@@ -210,25 +198,6 @@ namespace compilation
       
       case UNIX: 
         textin += "unx/\n";
-=======
-        textin += "gnu\n";
-        break;
-
-      case GPP: 
-        textin += "gnu\n";
-        break;
-      
-      case MICROSOFT: 
-        textin += "win\n";
-        break;
-      
-      case CLANG: 
-        textin += "clg\n";
-        break;
-      
-      case UNIX: 
-        textin += "unx\n";
->>>>>>> master
         break;
       
       case ERR:

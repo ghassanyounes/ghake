@@ -18,10 +18,10 @@ enum STATUS {
 
 namespace doxygen {
 
-  bool doxypresent(void);
-  STATUS gendoxy(void);
-  STATUS editdoxy(std::string projname);
-  STATUS inject(std::string makefile);
+        bool doxypresent(void);
+          STATUS gendoxy(void);
+         STATUS editdoxy(const std::string projname);
+           STATUS inject(const std::string makefile);
 }
 
 namespace compilation
@@ -31,17 +31,16 @@ namespace compilation
     GPP,
     MICROSOFT,
     CLANG,
-<<<<<<< HEAD
     CLANGPP,
-=======
->>>>>>> master
     UNIX,
     ERR
   };
 
-  COMPIL compiler(std::string);
-  std::string compilargs(COMPIL compiler);
-  STATUS inject(COMPIL cc, std::string cliargs, std::string makename);
+         COMPIL compiler(const std::string);
+  std::string compilargs(const COMPIL compiler);
+           STATUS inject(const COMPIL cc, 
+                         const std::string cliargs, 
+                         const std::string makename);
 }
 
 namespace memorydebug
@@ -53,29 +52,24 @@ namespace memorydebug
     ERR
   };
 
-  MMCHK memdebug(std::string debugger);
-  std::string memdargs(MMCHK debugger);
+          MMCHK memdebug(const std::string debugger);
+    std::string memdargs(const MMCHK debugger);
+           STATUS inject(const std::string makename);
 
 }
 
 namespace basemake
 {
-<<<<<<< HEAD
-  STATUS macros(std::string makename, 
-                std::string projname, 
-                compilation::COMPIL compiler, 
-                std::string extension);
-  STATUS targets(std::string makename);
-  STATUS baserules(std::string makename);
-  STATUS dotorules(std::string makename, 
-                   std::string extension);
-  STATUS generatedeps(compilation::COMPIL compiler, std::string extension);
-=======
-  STATUS macros(std::string makename, std::string driver);
-  STATUS targets(std::string makename);
-  STATUS baserules(std::string makename);
-  STATUS dotorules(std::string makename, 
-                   compilation::COMPIL compiler, 
-                   std::string extension);
->>>>>>> master
+           STATUS macros(const std::string makename,
+                         const std::string projname, 
+                         const compilation::COMPIL compiler, 
+                         const std::string extension,
+                         const memorydebug::MMCHK debugger,
+                         const std::string debugargs);
+          STATUS targets(const std::string makename);
+        STATUS baserules(const std::string makename);
+        STATUS dotorules(const std::string makename, 
+                         const std::string extension);
+     STATUS generatedeps(const compilation::COMPIL compiler, 
+                         const std::string extension);
 }

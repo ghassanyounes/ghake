@@ -169,11 +169,17 @@ namespace doxygen
   STATUS inject(std::string makename)
   {
     std::string textin;
-    textin = "doxygen :\n\t-@$(ERASE) html/\n\t-@$(ERASE) latex/\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n";
     std::ofstream makefile;
+    const char* makefname = makename.c_str();
+
+    textin = "doxygen :\n\t-@$(ERASE) html/\n\t-@$(ERASE) latex/\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n\n";
+
+    textin += "doxyclean :\n";
+	  textin += "\t-@$(ERASE) Doxyfile\n";
+	  textin += "\t-@$(ERASE) html/\n";
+	  textin += "\t-@$(ERASE) latex/\n\n";
     // std::ios::app is the open mode "append" meaning
     // new data will be written to the end of the file.
-    const char* makefname = makename.c_str();
     makefile.open(makefname, std::ios::app);
     if (makefile.is_open() == 0)
     {

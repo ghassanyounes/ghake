@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['functions_2eh',['functions.h',['../functions_8h.html',1,'']]]
+  ['diffing_2ecpp',['diffing.cpp',['../diffing_8cpp.html',1,'']]],
+  ['doxy_2ecpp',['doxy.cpp',['../doxy_8cpp.html',1,'']]]
 ];
