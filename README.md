@@ -1,6 +1,8 @@
 # ghake
 A C++ Program that writes makefiles for you. Based on the programming standards of my C++ programming class.
 
+Run 
+
 Usage (CLI switches in order: ): 
 Compiler options:
 - cc      (UNIX C compiler) (not tested)
@@ -11,15 +13,15 @@ Compiler options:
 - g++     (GNU C++ Compiler)
 
 Memory Debugger: 
-- Dr. Memory (not tested)
-- Valgrind
+- drmemory [Dr. Memory] (not tested)
+- valgrind [Valgrind]
 
 Project name:
 - Input project title in "Double Quotation Marks"
 
 Makefile file Extensions:
-- Yes ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "make -f makefile.###)
-- No  ('makefile')
+- yes ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "make -f makefile.###)
+- no  ('makefile')
 
 Quiet mode?
 - on  (Will not repeat the input values to affirm them)

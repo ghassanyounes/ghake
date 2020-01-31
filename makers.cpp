@@ -7,30 +7,30 @@
 
 namespace basemake
 {
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  This function generates the macros in the makefile
    * 
-   * @param makename
+   * \param makename
    *  The name of the makefile to write to
    * 
-   * @param projname
+   * \param projname
    *  Name of the current project
    * 
-   * @param compiler
+   * \param compiler
    *  Compiler to be used
    * 
-   * @param extension
+   * \param extension
    *  File extension of source code files
    * 
-   * @param debugger
+   * \param debugger
    *  Memory debugger to be used
    * 
-   * @param debugargs
+   * \param debugargs
    *  Memory debugger CLI arguments
    * 
-   * @return
+   * \return
    *  Returns the status of the write operations
    * 
    */
@@ -144,15 +144,15 @@ namespace basemake
     return OK;
   }
 
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Injects the generic targets into the makefile (executable and run command)
    * 
-   * @param makename
+   * \param makename
    *  Name of the makefile to inject into
    * 
-   * @return
+   * \return
    *  Returns the status of the function
    * 
    */
@@ -188,15 +188,15 @@ namespace basemake
   }
 
 
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Injects the base targets into the makefile (clean, rebuild)
    * 
-   * @param makename
+   * \param makename
    *  Name of the makefile to inject into
    * 
-   * @return
+   * \return
    *  Returns the status of the function
    * 
    */
@@ -227,18 +227,18 @@ namespace basemake
     return OK;
   }
   
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Injects the object file targets into the makefile
    * 
-   * @param makename
+   * \param makename
    *  Name of the makefile to inject into
    * 
-   * @param extension
+   * \param extension
    *  File extension of source files
    * 
-   * @return
+   * \return
    *  Returns the status of the function
    * 
    */
@@ -286,18 +286,18 @@ namespace basemake
     return OK;
   }
 
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Injects the object file targets into the makefile
    * 
-   * @param compiler
+   * \param compiler
    *  Compiler being requested by the user
    * 
-   * @param extension
+   * \param extension
    *  File extension of source files
    * 
-   * @return
+   * \return
    *  Returns the status of the function
    * 
    */

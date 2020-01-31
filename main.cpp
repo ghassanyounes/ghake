@@ -1,9 +1,9 @@
-/**
- * @file    main.cpp 
- * @author  Ghassan Younes
- * @date    January 27th 2020
+/*!
+ * \file    main.cpp 
+ * \author  Ghassan Younes
+ * \date    January 27th 2020
  * 
- * @brief
+ * \brief
  *  This program will autogenerate a makefile for your code, with custom CLI 
  *  arguments and a choice of memory checkers.
  * 

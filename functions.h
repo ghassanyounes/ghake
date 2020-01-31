@@ -1,9 +1,9 @@
-/**
- * @file    functions.h 
- * @author  Ghassan Younes
- * @date    January 27th 2020
+/*!
+ * \file    functions.h 
+ * \author  Ghassan Younes
+ * \date    January 27th 2020
  * 
- * @brief
+ * \brief
  *  This file contains the function declarations for the autogen makefiles.
  * 
  */

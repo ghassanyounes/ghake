@@ -1,9 +1,9 @@
-/**
- * @file    compile.cpp
- * @author  Ghassan Younes
- * @date    January 27th 2020
+/*!
+ * \file    compile.cpp
+ * \author  Ghassan Younes
+ * \date    January 27th 2020
  * 
- * @brief
+ * \brief
  *  This file contains the function definitions for the compilation namespace.
  * 
  */
@@ -15,15 +15,15 @@
 
 namespace memorydebug
 {
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Quantifies the memory debugger
    * 
-   * @param debugger
+   * \param debugger
    *  Memory debugger string input by the user
    * 
-   * @return
+   * \return
    *  Returns the memory debugger to be used
    * 
    */
@@ -43,15 +43,15 @@ namespace memorydebug
     }
   }
 
-    /**
+    /*!
    * 
-   * @brief
+   * \brief
    *  Determines the CLI switches to use for the memory debugger
    * 
-   * @param debugger
+   * \param debugger
    *  Which debugger's CLI switches to use
    * 
-   * @return
+   * \return
    *  Returns the CLI switches
    * 
    */
@@ -77,15 +77,15 @@ namespace memorydebug
     }
   }
 
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  Injects the mamory debugger file targets into the makefile
    * 
-   * @param makename
+   * \param makename
    *  Name of the makefile to inject into
    * 
-   * @return
+   * \return
    *  Returns the status of the function
    * 
    */

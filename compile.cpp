@@ -1,9 +1,9 @@
-/**
- * @file    compile.cpp
- * @author  Ghassan Younes
- * @date    January 27th 2020
+/*!
+ * \file    compile.cpp
+ * \author  Ghassan Younes
+ * \date    January 27th 2020
  * 
- * @brief
+ * \brief
  *  This file contains the function definitions for the compilation namespace.
  * 
  */
@@ -15,15 +15,15 @@
 
 namespace compilation
 {
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  This function returns the compiler requested by the user
    * 
-   * @param comp
+   * \param comp
    *  Program executable input from argv[]
    * 
-   * @return
+   * \return
    *  Returns the compiler being used
    * 
    */
@@ -59,15 +59,15 @@ namespace compilation
     }
   }
  
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  This function returns the compiler requested by the user
    * 
-   * @param compiler
+   * \param compiler
    *  Compiler requested by the user
    * 
-   * @return
+   * \return
    *  Returns the compiler arguments to be used (CS170 - ANSI C++ standards)
    * 
    */
@@ -109,16 +109,22 @@ namespace compilation
     }
   }
 
-  /**
+  /*!
    * 
-   * @brief
+   * \brief
    *  This function injects the compiler and arguments into the makefile
    * 
-   * @param comp
-   *  Program executable input from argv[]
+   * \param cc
+   *  Compiler specified by the user
    * 
-   * @return
-   *  Returns the compiler being used
+   * \param cliargs
+   *  Command line arguments for the specified compiler
+   * 
+   * \param makename
+   *  Name of makefile to write to
+   * 
+   * \return
+   *  Status of file IO
    * 
    */
   STATUS inject(COMPIL cc, std::string cliargs, std::string makename)

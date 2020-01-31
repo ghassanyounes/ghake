@@ -14,7 +14,7 @@ DRIVER=main
 OBJECTS=$(OUTDIR)$(DRIVER).o $(OUTDIR)compile.o $(OUTDIR)diffing.o \
 $(OUTDIR)doxy.o $(OUTDIR)memchk.o $(OUTDIR)makers.o
 
-EXE=test
+EXE=ghake
 
 RUNARGS=g++ valgrind "Making My Makefile" cpp yes off
 
@@ -33,6 +33,7 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
 	$(MAKE) doxygen
+	clear; echo "You can find the built executable in $(OUTDIR)"
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
