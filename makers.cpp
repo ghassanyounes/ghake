@@ -20,15 +20,15 @@ namespace basemake
 {
   STATUS macros(const info pinfo)
   {
-    std::string exec = pinfo.project_name;      /// Executable since pinfo const
-    std::string textin1;                        /// First set of text to write
-    std::string textin2;                        /// Second set of text
-    std::string dbg;                            /// Wich debugger?
-    std::string objects;
-    std::ofstream makefile;
-    const char* makefname = pinfo.makefile.c_str();
-    std::ifstream dependencylist;
-    std::string linetext;
+    std::string exec = pinfo.project_name;          /// Executable (const pinfo)
+    std::string textin1;                            /// First string to write
+    std::string textin2;                            /// Second set of text
+    std::string dbg;                                /// Which debugger?
+    std::string objects;                            /// List of object files
+    std::ofstream makefile;                         /// Makefile to write to
+    const char* makefname = pinfo.makefile.c_str(); /// C String makefile name
+    std::ifstream dependencylist;                   /// File dependencies list
+    std::string linetext;                           /// File's text on each line
 
     STATUS dps = generatedeps(pinfo);
     if (dps == FILE_ERR || dps == FAILED)
@@ -56,7 +56,7 @@ namespace basemake
     textin2 += "del \n\n";
 #endif
 
-    for (int i = 0; i < (int)sizeof(exec); i++)
+    for (std::size_t i = 0; i < sizeof(exec); i++)
     {
       if (( exec[i] == ' '  || exec[i] == '\n' ) 
         ||( exec[i] == '\t' || exec[i] == '.'  ))
@@ -116,6 +116,13 @@ namespace basemake
 
     while(getline(dependencylist,linetext))
     {
+      ///FIXME: currently only reads in to the first '.'. This could be a 
+      ///       big problem later on. I've thrown in suggested code - but if
+      ///       example code reads pas the first space then this also won't work
+
+      //std::string target = given_path.filename().string();
+      //std::stize_t dot = target.find_last_of('.');
+      //target.resize(dot);
       std::string target(sizeof(linetext), '\0');
       for (int i = 0; linetext[i] != '.'; i++)
       {
@@ -137,9 +144,9 @@ namespace basemake
 
   STATUS targets(const info pinfo)
   {
-    std::string targets; 
-    std::ofstream makefile;
-    const char* makefname = pinfo.makefile.c_str();
+    std::string targets;                            /// List of targets
+    std::ofstream makefile;                         /// Makefile to write to 
+    const char* makefname = pinfo.makefile.c_str(); /// C String makefile name
 
     targets = "# TARGETS =====================================================";
     targets += "=================\n\n";
@@ -173,9 +180,9 @@ namespace basemake
 
   STATUS baserules(const info pinfo)
   {
-    std::string target;
-    std::ofstream makefile;
-    const char* makefname = pinfo.makefile.c_str();
+    std::string target;                             /// List of targets
+    std::ofstream makefile;                         /// Makefile to write to 
+    const char* makefname = pinfo.makefile.c_str(); /// C String makefile name
 
     target  = "clean : \n";
     target += "\t@$(ERASE) $(OUTDIR)*\n\n";
@@ -206,10 +213,10 @@ namespace basemake
   
   STATUS dotorules(const info pinfo)
   {
-    std::ifstream dependencylist;
-    std::ofstream makefile;
-    std::string linetext;
-    const char* makefname = pinfo.makefile.c_str();
+    std::ifstream dependencylist;                   /// File dependencies list
+    std::ofstream makefile;                         /// Makefile to write to
+    std::string linetext;                           /// File's text on each line
+    const char* makefname = pinfo.makefile.c_str(); /// C String makefile name
 
     dependencylist.open("dependencies.txt");
     if (dependencylist.is_open() == 0)
@@ -247,7 +254,7 @@ namespace basemake
 
   STATUS generatedeps(const info pinfo)
   {
-    std::string command;
+    std::string command;    /// Command to run to generate file dependency list
     switch (pinfo.compinfo.comptype)
     {
       case compilation::GCC: 

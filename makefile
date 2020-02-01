@@ -5,14 +5,15 @@ CC=g++
 ERASE=rm -rf
 
 CFLAGS=-g -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o
-# CLANG -g -O0 -v -std=c++98 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o
+
+CLANGFLAGS= -g -O0 -v -std=c++98 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o
 
 OUTDIR=build/gnu/
 
 DRIVER=main
 
-OBJECTS=$(OUTDIR)$(DRIVER).o $(OUTDIR)compile.o $(OUTDIR)diffing.o \
-$(OUTDIR)doxy.o $(OUTDIR)memchk.o $(OUTDIR)makers.o
+OBJECTS=$(OUTDIR)$(DRIVER).o $(OUTDIR)compile.o $(OUTDIR)doxy.o \
+$(OUTDIR)memchk.o $(OUTDIR)makers.o
 
 EXE=ghake
 
@@ -27,13 +28,16 @@ DIFFDIR=diff/
 DIFFILE=test0.txt
 
 # TARGETS ======================================================================
+:
+	echo "--no-print-directory" | $(MAKE) run 
 
 run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) doxygen
 #$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
-	$(MAKE) doxygen
-	clean; echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
+#$(MAKE) doxygen
+	clear; echo "Made executable successfully. \
+	You can find the built executable at $(OUTDIR)$(EXE)"
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
@@ -58,7 +62,7 @@ clean :
 
 rebuild :
 	$(MAKE) clean
-	$(MAKE)
+	$(MAKE) 
 
 doxygen :
 	-@$(ERASE) html/

@@ -17,8 +17,8 @@ namespace doxygen
 {
   bool doxypresent(void)
   {
-    bool opclo;
-    std::ifstream Doxyfile;  
+    bool opclo;             /// Open or closed?
+    std::ifstream Doxyfile; /// Doxyfile instream
     Doxyfile.open("Doxyfile");
     opclo = Doxyfile.is_open();
     Doxyfile.close();
@@ -27,13 +27,13 @@ namespace doxygen
 
   STATUS gendoxy(void)
   {
+    std::string doxvers;    /// Doxygen version
+    std::ifstream version;  /// version.txt file
 #if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
     system("touch doxyversion.txt; doxygen --version > doxyversion.txt");
 #elif defined (_WIN32) || defined (_WIN64)
     system("doxygen --version > doxyversion.txt");
 #endif
-    std::string doxvers;
-    std::ifstream version;
     version.open ("doxyversion.txt");
     getline(version,doxvers);
     version.close();
@@ -61,9 +61,9 @@ namespace doxygen
 
   STATUS editdoxy(const info pinfo)
   {
-    std::string linetext;
-    std::ifstream doxyin;
-    std::ofstream doxyfile;
+    std::string linetext;   /// Line of Doxyfile that was read in
+    std::ifstream doxyin;   /// Input Doxyfile
+    std::ofstream doxyfile; /// Output Doxyfile
 #if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
     system("mv Doxyfile Doxyfile.old");
 #elif defined (_WIN32) || defined (_WIN64)
@@ -76,6 +76,8 @@ namespace doxygen
     {
       return FILE_ERR;
     }
+
+    /// Set correct Doxygen flags
 
     while(getline(doxyin,linetext))
     {
@@ -157,17 +159,21 @@ namespace doxygen
   
   STATUS inject(const info pinfo)
   {
-    std::string textin;
-    std::ofstream makefile;
-    const char* makefname = pinfo.makefile.c_str();
+    std::string textin;                             /// Input text
+    std::ofstream makefile;                         /// Makefile to write to
+    const char* makefname = pinfo.makefile.c_str(); /// Name of makefile
 
-    textin = "doxygen :\n\t-@$(ERASE) html/\n\t-@$(ERASE) latex/\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n\n";
+    textin  = "doxygen :\n";
+    textin += "\t-@$(ERASE) html/\n";
+    textin += "\t-@$(ERASE) latex/\n";
+    textin += "\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n";
+    textin += "\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n\n";
 
     textin += "doxyclean :\n";
 	  textin += "\t-@$(ERASE) Doxyfile\n";
 	  textin += "\t-@$(ERASE) html/\n";
 	  textin += "\t-@$(ERASE) latex/\n\n";
-    makefile.open(makefname, std::ios::app);
+    makefile.open(makefname, std::ios::app);  /// Open in append mode
     if (makefile.is_open() == 0)
     {
       return FILE_ERR;

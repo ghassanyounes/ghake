@@ -57,25 +57,65 @@ int main(int argc, const char* argv[])
   {
     if (help.compare(argv[1]) == 0)
     {
-      std::cout << "Valid entries are:" <<  endl
-                << "For compiler:        cc, cl, clang, clang++, gcc, & g++" 
+      std::cout << "# ghake\n"
+                << "`ghake` is a C++ Program that writes makefiles for you, " 
+                << "based on programming standards of my C++ programming class."
+                << endl << endl 
+                << "ghake help menu:"
                 << endl
-                << "For memory debugger: drmemory & valgrind" << endl
-                << "Project name should be in \"double quotation marks\"" 
+                << "==========================================================="
                 << endl
-                << "Type \"yes\" to append makefile with \'.COMP\', where " 
-                << "COMP is .unx, .wcl, .gnu, and .clg, depending on the " 
-                << "compiler you choose." 
+                << "##Usage"
                 << endl
-                << "Diff File can be any file in the current directory. " 
-                << "Anything other than \'nodiff\' will pipe program output "
-                << "into \'myout.txt\' when compiling and running with make "
-                << "Entering \'nodiff\' will not inject a diff command into "
-                << "the generated makefile."
+                << "-----"
+                << "Runtime Arguments for `ghake` are in the following order:"
                 << endl
-                << "Quiet mode on will disable the readout of your entries."
-                << endl; 
-     return 1;
+                << "ghake COMPILER MEMDBUG \"PRJNAME\" FILEX MAKEX DIFF_FILE " 
+                << "QUIET" << endl
+                << endl
+                << "### Compiler options" << endl
+                << "- `cc`      [UNIX C compiler] (partially tested)" << endl
+                << "- `cl`      [Microsoft C compiler] (not tested)" << endl
+                << "- `clang`   [LLVM C compiler]" << endl
+                << "- `clang++` [LLVM C++ compiler]" << endl
+                << "- `gcc`     [GNU C Compiler]" << endl
+                << "- `g++`     [GNU C++ Compiler]" << endl
+                << endl
+                << "### Memory Debugger " << endl
+                << "- `drmemory` [Dr. Memory] (not tested)" << endl
+                << "- `valgrind` [Valgrind]" << endl
+                << endl
+                << "### Project name" << endl
+                << "- Input project title in \"Double Quotation Marks\"" << endl
+                << endl
+                << "### Source code file extensions:"
+                << "- I've only tested `c` and `cpp` (*no `.` in runtime "
+                << "argument*), and the Compiler flags are set for C and C++ "
+                << "programs."  << endl
+                << "**Filenames cannot currently have `\'.\'` anywhere other "
+                << "than right before the file extension." 
+                << "I'm working on fixing it.**"
+                << endl
+                << "### Makefile file Extensions"
+                << "- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, " 
+                << "`.clg`, or `.unx`  -- make must be run as" 
+                << "\"`make -f makefile.###`\")"
+                << "- `no`  (file name of `makefile` will remain unchanged)" 
+                << endl << endl
+                << "### Diff File"
+                << "- `nodiff` will not inject a diff command" << endl
+                << "- Any other string (should include the `.txt` extension)" 
+                << "will run a check for a file matching that name. It will "
+                << "also pipe the output of your program into a text file "
+                << "called `myout.txt` when running make, so that it has "
+                << "something to diff." << endl
+                << endl
+                << "### Quiet mode?"
+                << "- `on`  (Will not repeat the input values to affirm them)"
+                << endl
+                << "- `off` (Will repeat the input values to affirm them)" 
+                << endl << endl;
+     return 0;
     }
     else 
     {
