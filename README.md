@@ -1,7 +1,7 @@
 # ghake
-Ghake is a C++ Program that writes makefiles for you. Based on the programming standards of my C++ programming class.
+`ghake` is a C++ Program that writes makefiles for you. Based on the programming standards of my C++ programming class.
 
-Run "ghake help" for assistance concerning the command-line switches.
+Run `ghake help` for assistance concerning the command-line switches.
 
 ---
 
@@ -22,7 +22,7 @@ Run "ghake help" for assistance concerning the command-line switches.
 - Input project title in "Double Quotation Marks"
 
 Source code file extensions:
-- I've only tested .c and .cpp, and the Compiler flags are set for C and C++ programs. !!Filenames cannot currently have '.' anywhere other than right before the file extension. I'm working on fixing it.
+- I've only tested `c` and `cpp` (*no `.` as runtime argument*), and the Compiler flags are set for C and C++ programs. **Filenames cannot currently have `'.'` anywhere other than right before the file extension. I'm working on fixing it.**
 
 ### Makefile file Extensions:
 - `yes` ('makefile' -> .gnu, .wcl, . clg, .unx  -- must be run through "`make -f makefile.###`")
