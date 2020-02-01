@@ -36,7 +36,7 @@ namespace memorydebug
     switch (pinfo.mdinfo.debugtype)
     {
       case VALG: 
-        return "-q --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes --suppressions=false.supp";
+        return "-q --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes ";
         break;
       
       case DRMEM:
