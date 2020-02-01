@@ -68,5 +68,7 @@ Cmake. Cmake exists.
 > I KNOW! I'M AWARE! (check out cmake [here])
 
 [Download the latest release from the RELEASES page]=https://github.com/ghassanyounes/ghake/releases
+
 [my crappy website]: http://www.ghassanyounes.com
+
 [here]: https://cmake.org/
