@@ -50,13 +50,16 @@ Download the latest release from the RELEASES folder, and simply run `make` from
 # FAQ:
 
 Does this work on all operating systems?
-> This *should* work on Windows, macOS, and Linux - you just need to have the right compilers installed.
+> This *should* work on Windows, macOS, and Linux - you just need to have the right compiler(s) installed. I also haven't tested this on Windows, so feel free to flag a new issue if something doesn't work.
+
+tHiS hAs sYsTEm() cALls!!!11!1!!!
+> Yeah. And? I need to check the current version of Doxygen, create files and directories, yada yada yada. I've thrown in the flags to run the right commands for the right operating system. Don't like it? Do it yourself.
 
 Where does the name `ghake` come from? 
 > Well, it's my name + `make`. Yes, very original, I know.
 
 Couldn't you have made this with `make` or a scripting language like Perl or Python?
-> Well, yes. This is more of a proof of concept than anything else. Plus I needed something to put on my crappy website heheh.
+> Well, yes. This is more of a proof of concept than anything else. Plus I needed some sort of project to put on [my crappy website] heheh.
 
 You could have literally even done this in bash. There's absolutely no reason for you to do this.
 > First of all don't call me out like this, second of all, I know.
@@ -64,4 +67,5 @@ You could have literally even done this in bash. There's absolutely no reason fo
 Cmake. Cmake exists.
 > I KNOW! I'M AWARE! (check out cmake [here])
 
+[my crappy website]: http://www.ghassanyounes.com
 [here]: https://cmake.org/
