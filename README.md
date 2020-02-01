@@ -67,7 +67,7 @@ You could have literally even done this in bash. There's absolutely no reason fo
 Cmake. Cmake exists.
 > I KNOW! I'M AWARE! (check out cmake [here])
 
-[Download the latest release from the RELEASES page]=https://github.com/ghassanyounes/ghake/releases
+[Download the latest release from the RELEASES page]: https://github.com/ghassanyounes/ghake/releases
 
 [my crappy website]: http://www.ghassanyounes.com
 
