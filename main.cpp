@@ -1,18 +1,19 @@
-/*!
- * \file    main.cpp 
- * \author  Ghassan Younes
- * \date    January 27th 2020
+/**
+ * @file    main.cpp 
+ * @author  Ghassan Younes
+ * @date    January 27th 2020
+ * @par     email: ghassan\@ghassanyounes.com
  * 
- * \brief
+ * @brief
  *  This program will autogenerate a makefile for your code, with custom CLI 
  *  arguments and a choice of memory checkers.
  * 
  */
 
-#include <iostream>       //! cout, cin, endl, string
-#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
-#include <cstdlib>        //! system
-#include "functions.h"    /*! Namespace       Functions
+#include <iostream>       /// cout, cin, endl, string
+#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
+#include <cstdlib>        /// system
+#include "functions.h"    /** Namespace       Functions
                            *  ==================================================
                            *  basemake    ==> macros, targets, baserules, 
                            *                  dotorules, generatedeps 
@@ -24,7 +25,7 @@
                            *  global      ==> info, STATUS
                            */
 
-/*!
+/**
  * 
  * \param argc
  *  Number of command-line swithces activated
@@ -42,13 +43,14 @@ int main(int argc, const char* argv[])
   using std::cin;
   using std::endl;
 
-  std::string quieton = "on";
-  std::string quietoff = "off";
-  std::string help = "help";
-  std::string yes = "yes";
-  std::string makedirs;
+  std::string quieton = "on";       /// String "on" for argument check
+  std::string quietoff = "off";     /// String "off" for argument check
+  std::string help = "help";        /// String "help" for argument check
+  std::string yes = "yes";          /// String "yes" for argument check
+  std::string makedirs;             /// String for command to make directories
 
-  info pinfo;
+  info pinfo;                       /// Project Info struct type info
+  
   pinfo.makefile = "makefile";
 
   if (argc == 2)
@@ -66,6 +68,8 @@ int main(int argc, const char* argv[])
                 << "compiler you choose." 
                 << endl
                 << "Diff File can be any file in the current directory. " 
+                << "Anything other than \'nodiff\' will pipe program output "
+                << "into \'myout.txt\' when compiling and running with make "
                 << "Entering \'nodiff\' will not inject a diff command into "
                 << "the generated makefile."
                 << endl
@@ -119,12 +123,17 @@ int main(int argc, const char* argv[])
   pinfo.filex                 = argv[4];
   pinfo.diff_file             = argv[6];
 
-
+#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
   makedirs  = "if [ -d build ]; then echo \" \"; \n"; 
   makedirs += "else mkdir build; ";
   makedirs += "mkdir build/gnu; mkdir build/win; "; 
   makedirs += "mkdir build/unx; mkdir build/clg; ";
   makedirs += "fi";
+
+#elif defined (_WIN32) || defined (_WIN64)
+  makedirs = "IF exist build (echo " ") ELSE (mkdir build && mkdir build\\gnu ";
+  makedirs += "&& mkdir build\\clg && mkdir build\\unx &&mkdir build\\win)"
+#endif
   system(makedirs.c_str());
 
   if (doxygen::doxypresent())
@@ -134,7 +143,11 @@ int main(int argc, const char* argv[])
   } 
   else 
   {
-    doxygen::gendoxy();
+    STATUS doxystat = doxygen::gendoxy();
+    if (doxystat == FAILED || doxystat == FILE_ERR)
+    {
+      return 1;
+    }
     doxygen::editdoxy(pinfo);
   }
 
@@ -238,9 +251,9 @@ int main(int argc, const char* argv[])
     return 1;
   }
 
-  cout  << "\nTasks completed. Please make sure to add \'RUNARGS=\"...\"\' at " 
-        << "the end of your make command for any runtime arguments of your "
-        << "program. \nYou may also want to configure an \'ignore list\' " 
+  cout  << "\nTasks completed. Please remember to add \'RUNARGS=\"...\"\' when " 
+        << "the make command (or in the makefile) for any runtime arguments of "
+        << "the program. \nYou may also want to configure an \'ignore list\' " 
         << "for your memory debugger to ignore false positives." << endl 
         << endl
         << "Thank you for using Ghake!\n\n";

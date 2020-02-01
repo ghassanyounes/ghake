@@ -1,7 +1,17 @@
-#include <iostream>       //! cout, cin, endl, string
-#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
-#include <cstdlib>        //! system
-#include "functions.h"    //! doxypresent, gendoxy, editdoxy, inject, STATUS
+/**
+ * @file    doxy.cpp
+ * @author  Ghassan Younes
+ * @date    January 27th 2020
+ * @par     email: ghassan\@ghassanyounes.com
+ * 
+ * @brief
+ *  This file contains the function implementations for the doxygen namespace
+ * 
+ */
+#include <iostream>       /// cout, cin, endl, string
+#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
+#include <cstdlib>        /// system
+#include "functions.h"    /// doxypresent, gendoxy, editdoxy, inject, STATUS
 
 namespace doxygen 
 {
@@ -17,13 +27,23 @@ namespace doxygen
 
   STATUS gendoxy(void)
   {
-    system("touch doxyversion.txt; doxygen --version >> doxyversion.txt");
+#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
+    system("touch doxyversion.txt; doxygen --version > doxyversion.txt");
+#elif defined (_WIN32) || defined (_WIN64)
+    system("doxygen --version > doxyversion.txt");
+#endif
     std::string doxvers;
     std::ifstream version;
     version.open ("doxyversion.txt");
     getline(version,doxvers);
     version.close();
+
+#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
     system("rm doxyversion.txt");
+#elif defined (_WIN32) || defined (_WIN64)
+    system("del doxyversion.txt");
+#endif
+
     std::cout << "Doxygen version is " << doxvers << std::endl;
 
     if (doxvers.compare("1.8.15") != 0)
@@ -44,7 +64,11 @@ namespace doxygen
     std::string linetext;
     std::ifstream doxyin;
     std::ofstream doxyfile;
+#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
     system("mv Doxyfile Doxyfile.old");
+#elif defined (_WIN32) || defined (_WIN64)
+    system("move Doxyfile Doxyfile.old");
+#endif
     doxyin.open("Doxyfile.old");
     doxyfile.open ("Doxyfile");
 

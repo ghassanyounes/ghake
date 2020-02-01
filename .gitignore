@@ -46,3 +46,6 @@ latex/
 
 # Build dirs
 build/
+
+# README .txt for zip
+readme.txt

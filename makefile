@@ -33,7 +33,7 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
 	$(MAKE) doxygen
-	echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
+	clean; echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
@@ -43,9 +43,6 @@ $(OUTDIR)$(DRIVER).o : $(DRIVER).cpp functions.h
 
 $(OUTDIR)compile.o : compile.cpp functions.h
 	$(CC) compile.cpp -c $(CFLAGS) $(OUTDIR)compile.o 
-
-$(OUTDIR)diffing.o : diffing.cpp functions.h
-	$(CC) diffing.cpp -c $(CFLAGS) $(OUTDIR)diffing.o 
 
 $(OUTDIR)doxy.o : doxy.cpp functions.h
 	$(CC) doxy.cpp -c $(CFLAGS) $(OUTDIR)doxy.o 

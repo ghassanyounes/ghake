@@ -1,17 +1,17 @@
-/*!
- * \file    functions.h 
- * \author  Ghassan Younes
- * \date    January 27th 2020
- * \par     email: ghassan\@ghassanyounes.com
+/**
+ * @file    compile.cpp
+ * @author  Ghassan Younes
+ * @date    January 27th 2020
+ * @par     email: ghassan\@ghassanyounes.com
  * 
- * \brief
- *  This file contains the function implementations for the autogen makefiles.
+ * @brief
+ *  This file contains function implementations for the compilation namespace
  * 
  */
 
-#include <iostream>       //! cout, cin, endl, string
-#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
-#include "functions.h"    //! COMPIL, compiler, compilargs, inject, STATUS
+#include <iostream>       /// cout, cin, endl, string
+#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
+#include "functions.h"    /// COMPIL, compiler, compilargs, inject, STATUS
 
 namespace compilation
 {
@@ -52,11 +52,11 @@ namespace compilation
     switch (pinfo.compinfo.comptype)
     {
     case GCC:
-      return "-g -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
+      return "-g -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
       break;
 
     case GPP:
-      return "-g -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
+      return "-g  -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
       break;
 
     case MICROSOFT:
@@ -72,7 +72,7 @@ namespace compilation
       break;
 
     case UNIX:
-      return " \n";
+      return "-g -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o  \n";
       break;
 
     case ERR:
@@ -87,9 +87,9 @@ namespace compilation
 
   STATUS inject(info pinfo)
   {
-    std::ofstream makefile;
-    const char *makefname = pinfo.makefile.c_str();
-    std::string textin;
+    std::ofstream makefile;                           /// To open makefile
+    const char *makefname = pinfo.makefile.c_str();   /// C-string for file I/O
+    std::string textin;                               /// Text to input
 
     textin = "CC=";
     switch (pinfo.compinfo.comptype)

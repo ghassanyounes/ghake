@@ -1,16 +1,17 @@
-/*!
- * \file    compile.cpp
- * \author  Ghassan Younes
- * \date    January 27th 2020
+/**
+ * @file    memchk.cpp
+ * @author  Ghassan Younes
+ * @date    January 27th 2020
+ * @par     email: ghassan\@ghassanyounes.com
  * 
- * \brief
- *  This file contains the function definitions for the compilation namespace.
+ * @brief
+ *  This file contains the function definitions for the memorydebug namespace.
  * 
  */
 
-#include <iostream>       //! cout, cin, endl, string
-#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
-#include "functions.h"    //! MMCHK, debug, memdargs, inject
+#include <iostream>       /// cout, cin, endl, string
+#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
+#include "functions.h"    /// MMCHK, debug, memdargs, inject
 
 namespace memorydebug
 {

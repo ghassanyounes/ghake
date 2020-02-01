@@ -1,17 +1,17 @@
-/*!
- * \file    functions.h 
- * \author  Ghassan Younes
- * \date    January 27th 2020
- * \par     email: ghassan\@ghassanyounes.com
+/**
+ * @file    functions.h 
+ * @author  Ghassan Younes
+ * @date    January 27th 2020
+ * @par     email: ghassan\@ghassanyounes.com
  * 
- * \brief
+ * @brief
  *  This file contains the function declarations for the autogen makefiles.
  * 
  */
 
 #include <iostream>
 
-/*!
+/**
  * 
  * \brief
  *  Status of file IO
@@ -25,7 +25,7 @@ enum STATUS {
 
 namespace compilation
 {
-  /*!
+  /**
   * 
   * \brief
   *  Which compiler is being used
@@ -41,7 +41,7 @@ namespace compilation
     ERR
   };
 
-  /*!
+  /**
    *
    * \brief 
    *  Compiler debugger info struct
@@ -57,7 +57,7 @@ namespace compilation
 
 namespace memorydebug
 {
-  /*!
+  /**
    * 
    * \brief
    *  Which memory debugger is being used
@@ -71,7 +71,7 @@ namespace memorydebug
   };
 
 
-  /*!
+  /**
    *
    * \brief 
    *  Memory debugger info struct
@@ -84,7 +84,7 @@ namespace memorydebug
   } mdinfo;
 }
 
-/*!
+/**
  *
  * \brief 
  *  Project information struct
@@ -101,7 +101,7 @@ typedef struct info{
 
 namespace doxygen {
 
-  /*!
+  /**
    * 
    * \brief
    *  Checks if Doxyfile is present
@@ -111,7 +111,7 @@ namespace doxygen {
    * 
    */
         bool doxypresent(void);
-  /*!
+  /**
    * 
    * \brief
    *  Generates the Doxyfile
@@ -122,7 +122,7 @@ namespace doxygen {
    */
           STATUS gendoxy(void);
   
-  /*!
+  /**
    * 
    * \brief
    *  Edits the Doxyfile, modifying it to the CS170 standards 
@@ -136,7 +136,7 @@ namespace doxygen {
    * 
    */
          STATUS editdoxy(const info pinfo);
-  /*!
+  /**
    * 
    * \brief
    *  Injects the doxyfile into the makefile
@@ -153,7 +153,7 @@ namespace doxygen {
 
 namespace compilation
 {
-  /*!
+  /**
    * 
    * \brief
    *  This function returns the compiler requested by the user
@@ -167,7 +167,7 @@ namespace compilation
    */
          COMPIL compiler(const info pinfo);
 
-  /*!
+  /**
    * 
    * \brief
    *  This function returns the compiler arguments requested by the user
@@ -181,7 +181,7 @@ namespace compilation
    */
   std::string compilargs(const info pinfo);
 
-  /*!
+  /**
    * 
    * \brief
    *  This function injects the compiler and arguments into the makefile
@@ -198,7 +198,7 @@ namespace compilation
 
 namespace memorydebug
 {
-  /*!
+  /**
    * 
    * \brief
    *  Quantifies the memory pinfo.mdinfo.debugname
@@ -212,7 +212,7 @@ namespace memorydebug
    */
           MMCHK memdebug(const info pinfo);
 
-  /*!
+  /**
    * 
    * \brief
    *  Determines the CLI switches to use for the memory pinfo.mdinfo.debugname
@@ -226,7 +226,7 @@ namespace memorydebug
    */
     std::string memdargs(const info pinfo);
 
-  /*!
+  /**
    * 
    * \brief
    *  Injects the mamory pinfo.mdinfo.debugname file targets into the makefile
@@ -244,7 +244,7 @@ namespace memorydebug
 
 namespace basemake
 {
-  /*!
+  /**
    * 
    * \brief
    *  This function generates the macros in the makefile
@@ -258,7 +258,7 @@ namespace basemake
    */
            STATUS macros(const info pinfo);
   
-  /*!
+  /**
    * 
    * \brief
    *  Injects the generic targets into the makefile (executable and run command)
@@ -272,7 +272,7 @@ namespace basemake
    */
           STATUS targets(const info pinfo);
   
-  /*!
+  /**
    * 
    * \brief
    *  Injects the base targets into the makefile (clean, rebuild)
@@ -286,7 +286,7 @@ namespace basemake
    */
         STATUS baserules(const info pinfo);
         
-  /*!
+  /**
    * 
    * \brief
    *  Injects the object file targets into the makefile
@@ -300,7 +300,7 @@ namespace basemake
    */
         STATUS dotorules(const info pinfo);
 
-  /*!
+  /**
    * 
    * \brief
    *  Injects the object file targets into the makefile
