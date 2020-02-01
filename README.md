@@ -8,7 +8,7 @@ Run `ghake help` for assistance concerning the command-line switches.
 ## Usage 
 Runtime Arguments for `ghake` are in the following order:
 
-`ghake COMPILER MEMDBUG "PRJNAME" FILEX DIFF_FILE MAKEX QUIET`
+`ghake COMPILER MEMDBUG "PRJNAME" FILEX MAKEX DIFF_FILE QUIET`
 
 ### Compiler options
 - `cc`      [UNIX C compiler] (partially tested)
@@ -25,7 +25,7 @@ Runtime Arguments for `ghake` are in the following order:
 ### Project name
 - Input project title in "Double Quotation Marks"
 
-Source code file extensions:
+### Source code file extensions:
 - I've only tested `c` and `cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs. **Filenames cannot currently have `'.'` anywhere other than right before the file extension. I'm working on fixing it.**
 
 ### Makefile file Extensions
