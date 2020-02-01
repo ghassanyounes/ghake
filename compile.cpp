@@ -1,55 +1,43 @@
 /*!
- * \file    compile.cpp
+ * \file    functions.h 
  * \author  Ghassan Younes
  * \date    January 27th 2020
+ * \par     email: ghassan\@ghassanyounes.com
  * 
  * \brief
- *  This file contains the function definitions for the compilation namespace.
+ *  This file contains the function implementations for the autogen makefiles.
  * 
  */
 
-#include <iostream>       //! cout, cin, endl
-#include <cstring>        //! strcmp
-#include <fstream>        //! File I/O
-#include "functions.h"    
+#include <iostream>       //! cout, cin, endl, string
+#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
+#include "functions.h"    //! COMPIL, compiler, compilargs, inject, STATUS
 
 namespace compilation
 {
-  /*!
-   * 
-   * \brief
-   *  This function returns the compiler requested by the user
-   * 
-   * \param comp
-   *  Program executable input from argv[]
-   * 
-   * \return
-   *  Returns the compiler being used
-   * 
-   */
-  COMPIL compiler(std::string comp)
+  COMPIL compiler(info pinfo)
   {
-    if (comp.compare("gcc") == 0)
+    if (pinfo.compinfo.compilername.compare("gcc") == 0)
     {
       return GCC;
     } 
-    else if (comp.compare("g++") == 0)
+    else if (pinfo.compinfo.compilername.compare("g++") == 0)
     {
       return GPP;
     } 
-    else if (comp.compare("cl") == 0)
+    else if (pinfo.compinfo.compilername.compare("cl") == 0)
     {
       return MICROSOFT;
     } 
-    else if (comp.compare("cc") == 0)
+    else if (pinfo.compinfo.compilername.compare("cc") == 0)
     {
       return UNIX;
     } 
-    else if(comp.compare("clang") == 0)
+    else if(pinfo.compinfo.compilername.compare("clang") == 0)
     {
       return CLANG;
     } 
-    else if(comp.compare("clang++") == 0)
+    else if(pinfo.compinfo.compilername.compare("clang++") == 0)
     {
       return CLANGPP;
     } 
@@ -59,21 +47,9 @@ namespace compilation
     }
   }
  
-  /*!
-   * 
-   * \brief
-   *  This function returns the compiler requested by the user
-   * 
-   * \param compiler
-   *  Compiler requested by the user
-   * 
-   * \return
-   *  Returns the compiler arguments to be used (CS170 - ANSI C++ standards)
-   * 
-   */
-  std::string compilargs(COMPIL compiler)
+  std::string compilargs(info pinfo)
   {
-    switch (compiler)
+    switch (pinfo.compinfo.comptype)
     {
     case GCC:
       return "-g -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
@@ -109,29 +85,14 @@ namespace compilation
     }
   }
 
-  /*!
-   * 
-   * \brief
-   *  This function injects the compiler and arguments into the makefile
-   * 
-   * \param cc
-   *  Compiler specified by the user
-   * 
-   * \param CFLAGS
-   *  Command line arguments for the specified compiler
-   * 
-   * \param makename
-   *  Name of makefile to write to
-   * 
-   * \return
-   *  Status of file IO
-   * 
-   */
-  STATUS inject(COMPIL cc, std::string CFLAGS, std::string makename)
+  STATUS inject(info pinfo)
   {
+    std::ofstream makefile;
+    const char *makefname = pinfo.makefile.c_str();
     std::string textin;
+
     textin = "CC=";
-    switch (cc)
+    switch (pinfo.compinfo.comptype)
     {
       case GCC: 
         textin += "gcc\n";
@@ -165,10 +126,6 @@ namespace compilation
         return FAILED;
         break;
     }
-    std::ofstream makefile;
-    // std::ios::app is the open mode "append" meaning
-    // new data will be written to the end of the file.
-    const char *makefname = makename.c_str();
     makefile.open(makefname, std::ios::app);
     if (makefile.is_open() == 0)
     {
@@ -177,10 +134,10 @@ namespace compilation
     
     makefile << textin << "\n";
     textin = "CFLAGS=";
-    textin += CFLAGS;
+    textin += pinfo.compinfo.compilargs;
     makefile << textin << "\n";
     textin = "OUTDIR=build/";
-    switch (cc)
+    switch (pinfo.compinfo.comptype)
     {
       case GCC: 
         textin += "gnu/\n";

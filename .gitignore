@@ -37,9 +37,12 @@
 *.wcl
 *.clg
 
-#Doxyfile
+# Doxyfile
 Doxyfile
 
-#Doxygen Dirs
+# Doxygen Dirs
 html/
 latex/
+
+# Build dirs
+build/

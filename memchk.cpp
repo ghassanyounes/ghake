@@ -8,32 +8,19 @@
  * 
  */
 
-#include <iostream>       //! cout, cin, endl
-#include <cstring>        // strcmp
-#include <fstream>        //! File IO
-#include "functions.h"
+#include <iostream>       //! cout, cin, endl, string
+#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
+#include "functions.h"    //! MMCHK, debug, memdargs, inject
 
 namespace memorydebug
 {
-  /*!
-   * 
-   * \brief
-   *  Quantifies the memory debugger
-   * 
-   * \param debugger
-   *  Memory debugger string input by the user
-   * 
-   * \return
-   *  Returns the memory debugger to be used
-   * 
-   */
-  MMCHK memdebug(std::string debugger)
+  MMCHK memdebug(const info pinfo)
   {
-    if (debugger.compare("valgrind") == 0)
+    if (pinfo.mdinfo.debugname.compare("valgrind") == 0)
     {  
       return VALG;
     }
-    else if (debugger.compare("drmemory") == 0)
+    else if (pinfo.mdinfo.debugname.compare("drmemory") == 0)
     {
       return DRMEM;
     }
@@ -43,21 +30,9 @@ namespace memorydebug
     }
   }
 
-    /*!
-   * 
-   * \brief
-   *  Determines the CLI switches to use for the memory debugger
-   * 
-   * \param debugger
-   *  Which debugger's CLI switches to use
-   * 
-   * \return
-   *  Returns the CLI switches
-   * 
-   */
-  std::string memdargs(MMCHK debugger)
+  std::string memdargs(const info pinfo)
   {
-    switch (debugger)
+    switch (pinfo.mdinfo.debugtype)
     {
       case VALG: 
         return "-q --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes --suppressions=false.supp";
@@ -77,23 +52,11 @@ namespace memorydebug
     }
   }
 
-  /*!
-   * 
-   * \brief
-   *  Injects the mamory debugger file targets into the makefile
-   * 
-   * \param makename
-   *  Name of the makefile to inject into
-   * 
-   * \return
-   *  Returns the status of the function
-   * 
-   */
-  STATUS inject(std::string makename)
+  STATUS inject(const info pinfo)
   {
     std::string target;
     std::ofstream makefile;
-    const char* makefname = makename.c_str();
+    const char* makefname = pinfo.makefile.c_str();
 
     target  = "memchk : $(OUTDIR)$(EXE) $(OBJECTS)\n";
 	  target += "\t@$(MDEBUG) $(MDARGS) $(OUTDIR)$(EXE) $(RUNARGS)\n\n";

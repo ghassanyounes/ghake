@@ -16,7 +16,7 @@ $(OUTDIR)doxy.o $(OUTDIR)memchk.o $(OUTDIR)makers.o
 
 EXE=ghake
 
-RUNARGS=g++ valgrind "Making My Makefile" cpp yes off
+RUNARGS=g++ valgrind "Making My Makefile" cpp yes nodiff off
 
 MMCHK=valgrind
 
@@ -33,7 +33,7 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS)
 	$(MAKE) doxygen
-	clear; echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
+	echo "Made executable successfully. You can find the built executable at $(OUTDIR)$(EXE)"
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)

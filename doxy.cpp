@@ -1,20 +1,10 @@
-#include <iostream>       //! cout, cin, endl
-#include <fstream>        //! File IO
-#include <cstdlib>        //! System calls
-#include <cstring>        //! strcmp
-#include "functions.h"
+#include <iostream>       //! cout, cin, endl, string
+#include <fstream>        //! ofstream, ifstream, .open, .is_open(), .close()
+#include <cstdlib>        //! system
+#include "functions.h"    //! doxypresent, gendoxy, editdoxy, inject, STATUS
 
 namespace doxygen 
 {
-  /*!
-   * 
-   * \brief
-   *  Checks if Doxyfile is present
-   * 
-   * \return
-   *  Returns if Doxyfile is present
-   * 
-   */
   bool doxypresent(void)
   {
     bool opclo;
@@ -25,15 +15,6 @@ namespace doxygen
     return opclo;
   }
 
-  /*!
-   * 
-   * \brief
-   *  Generates the Doxyfile
-   * 
-   * \return
-   *  Returns the status of the function
-   * 
-   */
   STATUS gendoxy(void)
   {
     system("touch doxyversion.txt; doxygen --version >> doxyversion.txt");
@@ -58,20 +39,7 @@ namespace doxygen
     return OK;
   }
 
-  /*!
-   * 
-   * \brief
-   *  Edits the Doxyfile, modifying it to the CS170 standards 
-   *  (but keeping LaTeX)
-   * 
-   * \param projname
-   *  Name of project
-   * 
-   * \return
-   *  Returns the status of the function
-   * 
-   */
-  STATUS editdoxy(std::string projname)
+  STATUS editdoxy(const info pinfo)
   {
     std::string linetext;
     std::ifstream doxyin;
@@ -89,7 +57,7 @@ namespace doxygen
     {
       if (linetext.compare("PROJECT_NAME           = \"My Project\"") == 0)
       {
-        doxyfile << "PROJECT_NAME           = \"" << projname << "\"\n";
+        doxyfile << "PROJECT_NAME           = \"" << pinfo.project_name << "\"\n";
       }
       else if (linetext.compare("QUIET                  = NO") == 0) {
         doxyfile << "QUIET                  = YES\n";
@@ -162,24 +130,12 @@ namespace doxygen
     system("rm Doxyfile.*");
     return OK;
   }
-
-  /*!
-   * 
-   * \brief
-   *  Injects the doxyfile into the makefile
-   * 
-   * \param makename
-   *  Name of makefile to write to
-   * 
-   * \return
-   *  Returns the status of the function
-   * 
-   */
-  STATUS inject(std::string makename)
+  
+  STATUS inject(const info pinfo)
   {
     std::string textin;
     std::ofstream makefile;
-    const char* makefname = makename.c_str();
+    const char* makefname = pinfo.makefile.c_str();
 
     textin = "doxygen :\n\t-@$(ERASE) html/\n\t-@$(ERASE) latex/\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n\n";
 
@@ -187,8 +143,6 @@ namespace doxygen
 	  textin += "\t-@$(ERASE) Doxyfile\n";
 	  textin += "\t-@$(ERASE) html/\n";
 	  textin += "\t-@$(ERASE) latex/\n\n";
-    // std::ios::app is the open mode "append" meaning
-    // new data will be written to the end of the file.
     makefile.open(makefname, std::ios::app);
     if (makefile.is_open() == 0)
     {
