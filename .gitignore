@@ -44,8 +44,9 @@ Doxyfile
 html/
 latex/
 
-# Build dirs
+# Build and release dirs
 build/
+RELEASE/
 
 # README .txt for zip
 readme.txt

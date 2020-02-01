@@ -43,7 +43,7 @@ Runtime Arguments for `ghake` are in the following order:
 ---
 
 ## To compile from source: 
-Download the latest release from the RELEASES folder, and simply run `make` from within the directory; this should generate all the necessary files -- Default compiler is g++ with ANSI C++ and all error flags set.
+[Download the latest release from the RELEASES page], and simply run `make` from within the directory; this should generate all the necessary files -- Default compiler is g++ with ANSI C++ and all error flags set.
 
 ---
 
@@ -67,5 +67,6 @@ You could have literally even done this in bash. There's absolutely no reason fo
 Cmake. Cmake exists.
 > I KNOW! I'M AWARE! (check out cmake [here])
 
+[Download the latest release from the RELEASES page]=https://github.com/ghassanyounes/ghake/releases
 [my crappy website]: http://www.ghassanyounes.com
 [here]: https://cmake.org/
