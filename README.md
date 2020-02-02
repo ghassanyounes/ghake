@@ -28,7 +28,7 @@ Runtime Arguments for `ghake` are in the following order:
 - Input project title in "Double Quotation Marks"
 
 ### Source code file extensions:
-- I've only tested `c` and `cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs. **Filenames cannot currently have `'.'` anywhere other than right before the file extension. I'm working on fixing it.**
+- I've only tested `c` and `cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs.
 
 ### Makefile file Extensions
 - `yes` (`makefile` will be appended with `.gnu`, `.wcl`, `.clg`, or `.unx`  -- make must be run as "`make -f makefile.###`")

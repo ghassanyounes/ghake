@@ -18,7 +18,7 @@
 
 namespace basemake
 {
-  using idx_t = std::string::size_type;
+  using idx_t = std::string::size_type;             /// Simpilified name
   STATUS macros(const info pinfo)
   {
     std::string exec = pinfo.project_name;          /// Executable (const pinfo)
