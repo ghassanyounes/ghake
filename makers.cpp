@@ -56,7 +56,7 @@ namespace basemake
     textin2 += "del \n\n";
 #endif
 
-    for (std::size_t i = 0; i < sizeof(exec); i++)
+    for (std::size_t i = 0; i < exec.length(); i++)
     {
       if (( exec[i] == ' '  || exec[i] == '\n' ) 
         ||( exec[i] == '\t' || exec[i] == '.'  ))
@@ -114,20 +114,21 @@ namespace basemake
 
     objects = "OBJECTS=";
 
+    ///FIXME: currently only reads in to the first '.'. This could be a 
+    ///       big problem later on. I've thrown in suggested code - but if
+    ///       example code reads pas the first space then this also won't work
+
     while(getline(dependencylist,linetext))
     {
-      ///FIXME: currently only reads in to the first '.'. This could be a 
-      ///       big problem later on. I've thrown in suggested code - but if
-      ///       example code reads pas the first space then this also won't work
-
-      //std::string target = given_path.filename().string();
-      //std::stize_t dot = target.find_last_of('.');
-      //target.resize(dot);
       std::string target(sizeof(linetext), '\0');
-      for (int i = 0; linetext[i] != '.'; i++)
+      for (int i = 0; linetext[i] != ':'; i++)
       {
         target[i] = linetext[i];
       }
+
+     // std::string targetmod = given_path.filename().string();
+     // std::size_t dot = targetmod.find_last_of('.');
+     // targetmod.resize(dot);
 
       objects += "$(OUTDIR)";
       objects += target.c_str(); 

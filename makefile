@@ -17,11 +17,11 @@ $(OUTDIR)memchk.o $(OUTDIR)makers.o
 
 EXE=ghake
 
-RUNARGS=g++ valgrind "Making My Makefile" cpp yes nodiff off
+RUNARGS=g++ valgrind "Ghake" cpp yes nodiff off
 
 MMCHK=valgrind
 
-MMCHKARGS=-q --quiet --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes --suppressions=false.supp 
+MMCHKARGS=-q --quiet --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes 
 
 DIFFDIR=diff/
 
@@ -29,7 +29,7 @@ DIFFILE=test0.txt
 
 # TARGETS ======================================================================
 :
-	echo "--no-print-directory" | $(MAKE) run 
+	echo " --no-print-directory" | $(MAKE) run 
 
 run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) doxygen
@@ -38,6 +38,7 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 #$(MAKE) doxygen
 	clear; echo "Made executable successfully. \
 	You can find the built executable at $(OUTDIR)$(EXE)"
+
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)

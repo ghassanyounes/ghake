@@ -10,19 +10,16 @@
  * 
  */
 
-#include <iostream>       /// cout, cin, endl, string
+#include <iostream>       /// cout, endl, string
 #include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
 #include <cstdlib>        /// system
-#include "functions.h"    /** Namespace       Functions
-                           *  ==================================================
-                           *  basemake    ==> macros, targets, baserules, 
-                           *                  dotorules, generatedeps 
-                           *  compilation ==> compiler, compilargs, inject, 
-                           *                  COMPIL 
-                           *  doxygen     ==> doxypresent, gendoxy, editdoxy, 
-                           *                  inject
-                           *  memorydebug ==> debug, memdargs, inject, MMCHK 
-                           *  global      ==> info, STATUS
+#include "functions.h"    /** Namespace    | Functions
+                           *  ------------ | -----------------------------------
+                           *  basemake     |  macros, targets, baserules, dotorules, generatedeps 
+                           *  compilation  |  compiler, compilargs, inject, COMPIL 
+                           *  doxygen      |  doxypresent, gendoxy, editdoxy,  inject
+                           *  memorydebug  |  debug, memdargs, inject, MMCHK 
+                           *  global       |  info, STATUS
                            */
 
 /**
@@ -34,22 +31,21 @@
  *  Array of the commands input
  * 
  * \return
- *  Int 0
+ *  0 -- Success; 1 -- Fail
  * 
  */
 int main(int argc, const char* argv[])
 {
   using std::cout;
-  using std::cin;
   using std::endl;
 
-  std::string quieton = "on";       /// String "on" for argument check
-  std::string quietoff = "off";     /// String "off" for argument check
-  std::string help = "help";        /// String "help" for argument check
-  std::string yes = "yes";          /// String "yes" for argument check
-  std::string makedirs;             /// String for command to make directories
+  std::string quieton = "on";       // String "on" for argument check
+  std::string quietoff = "off";     // String "off" for argument check
+  std::string help = "help";        // String "help" for argument check
+  std::string yes = "yes";          // String "yes" for argument check
+  std::string makedirs;             // String for command to make directories
 
-  info pinfo;                       /// Project Info struct type info
+  info pinfo;                       // Project Info struct type info
   
   pinfo.makefile = "makefile";
 
@@ -67,7 +63,7 @@ int main(int argc, const char* argv[])
                 << endl
                 << "##Usage"
                 << endl
-                << "-----"
+                << "-------"
                 << "Runtime Arguments for `ghake` are in the following order:"
                 << endl
                 << "ghake COMPILER MEMDBUG \"PRJNAME\" FILEX MAKEX DIFF_FILE " 
@@ -126,9 +122,9 @@ int main(int argc, const char* argv[])
   {
     cout  << "Please enter the compiler, memory debugger, \"Project Name\", " 
           << "Source code file extensions, "
-          << " whether to enable makefile extensions, and quiet on/off \n"
-          << " Run \'ghake help\', \'ghake -h\', or \'ghake --help\' "
-          << "for valid entries." << endl
+          << " whether to enable makefile extensions, diff file (with .txt) " 
+          << "and quiet on/off \n"
+          << " Run \'ghake help\' for valid entries." << endl
           << "Exiting..." << endl;
     return 1;
   }
@@ -140,21 +136,21 @@ int main(int argc, const char* argv[])
 
   if (quieton.compare(argv[7]) != 0 && quietoff.compare(argv[7]) != 0)
   {
-    cout << "Invalid identifier for quiet mode. Must be \'onn\' or \'off\'"
+    cout << "Invalid identifier for quiet mode. Must be \'on\' or \'off\'"
          << endl;
     return 1;
   }
   
   if (quieton.compare(argv[7]) != 0)
   {
-    std::cout << "You selected: " << std::endl
-              << "Compiler:           " << argv[1] << std::endl
-              << "Memory Debugger:    " << argv[2] << std::endl
-              << "Project name:       " << argv[3] << std::endl
-              << "File extension:     " << argv[4] << std::endl
-              << "Makefile extension? " << argv[5] << std::endl
-              << "Diff File:          " << argv[6] << std::endl
-              << "Quiet mode?         " << argv[7] << std::endl;
+    cout << "You selected: "       << endl
+         << "Compiler:           " << argv[1] << endl
+         << "Memory Debugger:    " << argv[2] << endl
+         << "Project name:       " << argv[3] << endl
+         << "File extension:     " << argv[4] << endl
+         << "Makefile extension? " << argv[5] << endl
+         << "Diff File:          " << argv[6] << endl
+         << "Quiet mode?         " << argv[7] << endl;
   }
 
   pinfo.compinfo.compilername = argv[1];
@@ -183,7 +179,7 @@ int main(int argc, const char* argv[])
   } 
   else 
   {
-    STATUS doxystat = doxygen::gendoxy();
+    STATUS doxystat = doxygen::gendoxy();    // Status of generation of Doxyfile
     if (doxystat == FAILED || doxystat == FILE_ERR)
     {
       return 1;
@@ -191,7 +187,7 @@ int main(int argc, const char* argv[])
     doxygen::editdoxy(pinfo);
   }
 
-  pinfo.compinfo.comptype = compilation::compiler(pinfo); // VARNAME WAS cc
+  pinfo.compinfo.comptype = compilation::compiler(pinfo);
   if (yes.compare(argv[5])==0)
   {
     switch (pinfo.compinfo.comptype)
@@ -230,12 +226,12 @@ int main(int argc, const char* argv[])
   }
 
   pinfo.compinfo.compilargs = compilation::compilargs(pinfo);
-  pinfo.mdinfo.debugtype = memorydebug::memdebug(pinfo);
-  pinfo.mdinfo.debugargs = memorydebug::memdargs(pinfo);
+  pinfo.mdinfo.debugtype    = memorydebug::memdebug(pinfo);
+  pinfo.mdinfo.debugargs    = memorydebug::memdargs(pinfo);
   
   // INJECTION INTO MAKEFILE BEGINS HERE  
 
-  STATUS macrostat = basemake::macros(pinfo);
+  STATUS macrostat = basemake::macros(pinfo);       // Status of macro injection
   if (macrostat == FILE_ERR || macrostat == FAILED)
   {
     cout  << "Macro injection into makefile failed. Please make sure "
@@ -243,7 +239,7 @@ int main(int argc, const char* argv[])
     return 1; 
   }
 
-  STATUS compstatus = compilation::inject(pinfo);
+  STATUS compstatus = compilation::inject(pinfo);   // Status of compiler inject
   if (compstatus == FILE_ERR || compstatus == FAILED)
   {
     cout  << "Compiler injection into makefile failed. Please make sure "
@@ -251,7 +247,7 @@ int main(int argc, const char* argv[])
     return 1;
   }
 
-  STATUS targetstat = basemake::targets(pinfo);
+  STATUS targetstat = basemake::targets(pinfo);     // Status of target inject
   if (targetstat == FILE_ERR || targetstat == FAILED)
   {
     cout  << "Macro injection into makefile failed. Please make sure "
@@ -259,7 +255,7 @@ int main(int argc, const char* argv[])
     return 1; 
   }
 
-  STATUS dotostat = basemake::dotorules(pinfo);
+  STATUS dotostat = basemake::dotorules(pinfo);     // Status object file target
   if (dotostat == FILE_ERR || dotostat == FAILED)
   {
     cout  << "File target injection into makefile failed. Please make sure "
@@ -267,7 +263,7 @@ int main(int argc, const char* argv[])
     return 1; 
   }
 
-  STATUS doxystatus = doxygen::inject(pinfo); 
+  STATUS doxystatus = doxygen::inject(pinfo);       // Status of doxygen targets
   if (doxystatus == FILE_ERR || doxystatus == FAILED)
   {
     cout  << "Doxygen command injection into makefile failed. Please make sure "
@@ -275,7 +271,7 @@ int main(int argc, const char* argv[])
     return 1;
   }
 
-  STATUS memstat = memorydebug::inject(pinfo);
+  STATUS memstat = memorydebug::inject(pinfo);      // Status of memdbg inject
   if (memstat == FILE_ERR || memstat == FAILED)
   {
     cout  << "Memory Debug command injection into makefile failed. Please make "
@@ -283,7 +279,7 @@ int main(int argc, const char* argv[])
     return 1;
   }
 
-  STATUS basetrg = basemake::baserules(pinfo);
+  STATUS basetrg = basemake::baserules(pinfo);      // base rules/targets inject
   if (basetrg == FILE_ERR || basetrg == FAILED)
   {
     cout  << "Base target injection into makefile failed. Please make sure "
@@ -292,7 +288,7 @@ int main(int argc, const char* argv[])
   }
 
   cout  << "\nTasks completed. Please remember to add \'RUNARGS=\"...\"\' when " 
-        << "the make command (or in the makefile) for any runtime arguments of "
+        << "calling 'make' (or in the makefile) for any runtime arguments of "
         << "the program. \nYou may also want to configure an \'ignore list\' " 
         << "for your memory debugger to ignore false positives." << endl 
         << endl
