@@ -44,6 +44,7 @@ install : $(OUTDIR)$(EXE) $(OBJECTS)
 	cp $(OUTDIR)$(EXE) /usr/bin/ghake/ghake
 	echo 'PATH=$PATH:/usr/bin/ghake' >> ~/.bash_profile
 	echo 'PATH=$PATH:/usr/bin/ghake' >> /root/.bash_profile
+	PATH=$PATH:/usr/bin/ghake
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
