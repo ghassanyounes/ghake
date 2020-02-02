@@ -18,6 +18,7 @@
 
 namespace basemake
 {
+  using idx_t = std::string::size_type;
   STATUS macros(const info pinfo)
   {
     std::string exec = pinfo.project_name;          /// Executable (const pinfo)
@@ -114,25 +115,45 @@ namespace basemake
 
     objects = "OBJECTS=";
 
-    ///FIXME: currently only reads in to the first '.'. This could be a 
-    ///       big problem later on. I've thrown in suggested code - but if
-    ///       example code reads pas the first space then this also won't work
-
-    while(getline(dependencylist,linetext))
+    while (std::getline(dependencylist, linetext))
     {
-      std::string target(sizeof(linetext), '\0');
-      for (int i = 0; linetext[i] != ':'; i++)
+      if (linetext.empty()) continue;
+      
+      std::string target(linetext.size(), '\0') ;
+      // Note: the above will not compile prior to C++11,
+      // because I'm using uniform initializer brace syntax.
+      
+      idx_t last_dot = std::string::npos;
+      
+      for (idx_t i = 0; i < linetext.size(); ++i)
       {
+        if (linetext[i] == '.')
+        {
+          // keep track of the last dot seen
+          last_dot = i;
+        }
+        else if (linetext[i] == ':')
+        {
+          if (last_dot == std::string::npos)
+          {
+            // no extension detected, cut from the colon
+            target.resize(i);
+          }
+          else
+          {
+            // cut at the last dot
+            target.resize(last_dot);
+          }
+          
+          break;
+        }
+        
         target[i] = linetext[i];
       }
-
-     // std::string targetmod = given_path.filename().string();
-     // std::size_t dot = targetmod.find_last_of('.');
-     // targetmod.resize(dot);
-
+      
       objects += "$(OUTDIR)";
-      objects += target.c_str(); 
-      objects += ".o ";
+      objects += target;
+      objects += ".o";
     }
 
     objects += "\n\n";
@@ -179,7 +200,7 @@ namespace basemake
     return OK;
   }
 
-  STATUS baserules(const info pinfo)
+  STATUS baserules(info pinfo)
   {
     std::string target;                             /// List of targets
     std::ofstream makefile;                         /// Makefile to write to 

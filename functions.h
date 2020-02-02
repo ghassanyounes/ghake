@@ -312,5 +312,5 @@ namespace basemake
    *  Returns the status of the function
    * 
    */
-     STATUS generatedeps(const info pinfo);
+     STATUS generatedeps(info pinfo);
 }
