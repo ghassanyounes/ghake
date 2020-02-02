@@ -52,6 +52,13 @@ Runtime Arguments for `ghake` are in the following order:
 Does this work on all operating systems?
 > This *should* work on Windows, macOS, and Linux - you just need to have the right compiler(s) installed. I also haven't tested this on Windows, so feel free to flag a new issue if something doesn't work.
 
+What's the difference between the versions?
+> Versions 1.x.x have been deprecated as I am only able to check through source files up to the first `.` in the name of the source file, even if it is not the period preceding the file extension. This means that names like `cabbage.pasta.cpp` are incompatible with `ghake`. Versions 2.x.x onwards use the most current version of C++ (as of February 1st 2020 that is c++17, though C++20 is coming soon). 2.x.x+ support having `.` anywhere in the name of a file. 
+1.x.x is also only portable and must be compiled from source. You must add it to your PATH or add aliases to it to use it from the command line. 2.x.x+ have an 'installer' version which will add it to your PATH and store it in the typical places upon compilation.
+
+Why aren't there any precompiled binaries yet? 
+> Well, I only run Linux, and I haven't tried compiling for other platforms before. If I decide to try it out and make precompiled binaries for `ghake`, this question won't be here anymore.
+
 tHiS hAs sYsTEm() cALls!!!11!1!!!
 > Yeah. And? I need to check the current version of Doxygen, create files and directories, yada yada yada. I've thrown in the flags to run the right commands for the right operating system. Don't like it? Do it yourself.
 
