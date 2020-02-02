@@ -122,7 +122,7 @@ int main(int argc, const char* argv[])
   {
     cout  << "Please enter the compiler, memory debugger, \"Project Name\", " 
           << "Source code file extensions, "
-          << " whether to enable makefile extensions, diff file (with .txt) " 
+          << "whether to enable makefile extensions, diff file (with .txt) " 
           << "and quiet on/off \n"
           << " Run \'ghake help\' for valid entries." << endl
           << "Exiting..." << endl;
