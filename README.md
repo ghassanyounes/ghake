@@ -3,6 +3,8 @@
 
 Run `ghake help` for assistance concerning the command-line switches.
 
+> With v2.x.x+, upon downloading the source code, on Linux platforms you can run `sudo make install` to install `ghake` to  `/usr/bin`. It will also update your `PATH` to include `/usr/bin/ghake` as the directory where `ghake` is installed. Windows support might be coming soon, depends if I feel like it. Feel free to install to your 'Program Files' directory and update your `PATH` yourself ([here's a guide]). 
+
 ---
 
 ## Usage 
@@ -73,6 +75,8 @@ You could have literally even done this in bash. There's absolutely no reason fo
 
 Cmake. Cmake exists.
 > I KNOW! I'M AWARE! (check out cmake [here])
+
+[here's a guide]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 
 [Download the latest release from the RELEASES page]: https://github.com/ghassanyounes/ghake/releases
 
