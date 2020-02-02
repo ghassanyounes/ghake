@@ -39,6 +39,11 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 	clear; echo "Made executable successfully. \
 	You can find the built executable at $(OUTDIR)$(EXE)"
 
+install : $(OUTDIR)$(EXE) $(OBJECTS)
+	mkdir /usr/bin/ghake
+	cp $(OUTDIR)$(EXE) /usr/bin/ghake/ghake
+	echo 'PATH=$PATH:/usr/bin/ghake' >> ~/.bash_profile
+	echo 'PATH=$PATH:/usr/bin/ghake' >> /root/.bash_profile
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
@@ -63,7 +68,7 @@ clean :
 
 rebuild :
 	$(MAKE) clean
-	$(MAKE) 
+	echo " --no-print-directory" | $(MAKE) run 
 
 doxygen :
 	-@$(ERASE) html/
