@@ -153,7 +153,7 @@ namespace basemake
       
       objects += "$(OUTDIR)";
       objects += target;
-      objects += ".o";
+      objects += ".o ";
     }
 
     objects += "\n\n";
