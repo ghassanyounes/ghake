@@ -40,11 +40,13 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 	You can find the built executable at $(OUTDIR)$(EXE)"
 
 install : $(OUTDIR)$(EXE) $(OBJECTS)
-	mkdir /usr/bin/ghake
+	-mkdir /usr/bin/ghake
 	cp $(OUTDIR)$(EXE) /usr/bin/ghake/ghake
 	echo 'PATH=$PATH:/usr/bin/ghake' >> ~/.bash_profile
 	echo 'PATH=$PATH:/usr/bin/ghake' >> /root/.bash_profile
-	PATH=$PATH:/usr/bin/ghake
+	echo 'PATH=$PATH:/usr/bin/ghake' >> ~/.bashrc; export PATH
+	echo 'PATH=$PATH:/usr/bin/ghake' >> /root/.bashrc; export PATH
+	PATH=$PATH:/usr/bin/ghake; export PATH
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
 	$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)
