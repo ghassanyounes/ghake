@@ -171,9 +171,9 @@ namespace basemake
     const char* makefname = pinfo.makefile.c_str(); /// C String makefile name
 
     targets = "# TARGETS =====================================================";
-    targets += ":\n";
-    targets += "\techo \" --no-print-directory\" | $(MAKE) run \n";
     targets += "=================\n\n";
+    targets += ":\n";
+    targets += "\techo \" --no-print-directory\" | $(MAKE) run \n\n";
     targets += "run : $(OUTDIR)$(EXE) $(OBJECTS)\n";
     targets += "\t$(MAKE) doxygen\n";
     targets += "\t$(MAKE) memchk\n";
