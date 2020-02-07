@@ -17,6 +17,8 @@ $(OUTDIR)memchk.o $(OUTDIR)makers.o
 
 EXE=ghake
 
+P=P
+
 RUNARGS=g++ valgrind "Ghake" cpp yes nodiff off
 
 MMCHK=valgrind

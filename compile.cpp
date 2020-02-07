@@ -9,9 +9,9 @@
  * 
  */
 
-#include <iostream>       /// cout, cin, endl, string
-#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
-#include "functions.h"    /// COMPIL, compiler, compilargs, inject, STATUS
+#include <iostream>       // cout, cin, endl, string
+#include <fstream>        // ofstream, ifstream, .open, .is_open(), .close()
+#include "functions.h"    // COMPIL, compiler, compilargs, inject, STATUS
 
 namespace compilation
 {
