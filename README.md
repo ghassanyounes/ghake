@@ -1,47 +1,53 @@
-# ghake
-`ghake` is a C++ Program that writes makefiles for you. Based on the programming standards of my C++ programming class.
+# ghake v3.0.0 By Ghassan Younes ([www.ghassanyounes.com/ghake/])
+`ghake` is a C++ Program that writes makefiles for you, based on programming standards of my C++ programming class.
 
-Run `ghake help` for assistance concerning the command-line switches.
+Run `ghake --help` for assistance concerning the command-line switches.
 
 > With v2.x.x+, upon downloading the source code, on Linux platforms you can run `sudo make install` to install `ghake` to  `/usr/bin`. It will also update your `PATH` to include `/usr/bin/ghake` as the directory where `ghake` is installed. Windows support might be coming soon, depends if I feel like it. Feel free to install to your 'Program Files' directory and update your `PATH` yourself ([here's a guide]). 
 
----
+> Versions 3.x.x+ now use dynamic runtime arguments, as detailed below, with defaults listed: 
 
+===========================================================
 ## Usage 
-Runtime Arguments for `ghake` are in the following order:
+-------
+### Compiler options 
+- `--cc`      [UNIX C compiler] (partially tested)
+- `--cl`      [Microsoft C compiler] (not tested)
+- `--clang`   [LLVM C compiler]
+- `--clang++` [LLVM C++ compiler]
+- `--gcc`     [GNU C Compiler]
+- `--g++`     [GNU C++ Compiler] (default)
 
-`ghake COMPILER MEMDBUG "PRJNAME" FILEX MAKEX DIFF_FILE QUIET`
-
-### Compiler options
-- `cc`      [UNIX C compiler] (partially tested)
-- `cl`      [Microsoft C compiler] (not tested)
-- `clang`   [LLVM C compiler]
-- `clang++` [LLVM C++ compiler]
-- `gcc`     [GNU C Compiler]
-- `g++`     [GNU C++ Compiler]
+### ANSI/ISO standard 
+- `--ansi` adds the equivalent flag for each compiler to enforce the ANSI/ISO standard (`C89`; `C++98`)
 
 ### Memory Debugger 
-- `drmemory` [Dr. Memory] (not tested)
-- `valgrind` [Valgrind]
+- `--drmemory` [Dr. Memory] (not tested)
+- `--valgrind` [Valgrind] (default)
 
-### Project name
+### False Leak Suppression for Memory Debugger (--mdsupp 'path/to/file')
+- Tells the memory debugger to ignore specific memory leaks that are not the result of your program. Must be configured prior to compiling.
+
+### Project name (--name "PRJNAME") 
 - Input project title in "Double Quotation Marks"
 
-### Source code file extensions:
-- I've only tested `c` and `cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs.
+### Runtime Arguments (--run_args "ARGS") 
+- Input runtime arguments for generated program in "Double Quotation Marks"
 
-### Makefile file Extensions
-- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, `.clg`, or `.unx`  -- make must be run as "`make -f makefile.###`")
-- `no`  (file name of `makefile` will remain unchanged)
+### Source code file extensions (--ext EXT): 
+- I've only tested `--ext c` and `--ext cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs. Default is `cpp`. 
 
-### Diff File
-- `nodiff` will not inject a diff command
-- Any other string (should include the `.txt` extension) will run a check for a file matching that name. It will also pipe the output of your program into a text file called `myout.txt` when running make, so that it has something to diff.
+### Makefile file Extensions (--makext)
+- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, `.clg`, or `.unx`  -- make must be run as \`make -f makefile.###`\)
+- `no`  (file name of `makefile` will remain unchanged) (default)
 
-### Quiet mode?
-- `on`  (Will not repeat the input values to affirm them)
-- `off` (Will repeat the input values to affirm them)
+### Diff File (--diff "DIFF_FILE") 
+- `nodiff` will not inject a diff command (default)
+- Any other string (should include the file extension (normally `.txt`)) will run a check for a file matching that name. It will also pipe the output of your program into a text file called `myout.txt` when running make, so that it has something to diff.
 
+### Quiet mode 
+- `--quiet`   (Will not repeat the input values to affirm them) (default)
+- `--verbose` (Will repeat the input values to affirm them)
 ---
 
 ## To compile from source: 
@@ -56,13 +62,13 @@ Does this work on all operating systems?
 
 What's the difference between the versions?
 > Versions 1.x.x have been deprecated as I am only able to check through source files up to the first `.` in the name of the source file, even if it is not the period preceding the file extension. This means that names like `cabbage.pasta.cpp` are incompatible with `ghake`. Versions 2.x.x onwards use the most current version of C++ (as of February 1st 2020 that is c++17, though C++20 is coming soon). 2.x.x+ support having `.` anywhere in the name of a file. 
-1.x.x is also only portable and must be compiled from source. You must add it to your PATH or add aliases to it to use it from the command line. 2.x.x+ have an 'installer' version which will add it to your PATH and store it in the typical places upon compilation.
+1.x.x is also only portable and must be compiled from source. You must add it to your PATH or add aliases to it to use it from the command line. 2.x.x+ have an 'installer' make target which will add it to your PATH and store it in the typical places upon compilation.
 
 Why aren't there any precompiled binaries yet? 
 > Well, I only run Linux, and I haven't tried compiling for other platforms before. If I decide to try it out and make precompiled binaries for `ghake`, this question won't be here anymore.
 
-tHiS hAs sYsTEm() cALls!!!11!1!!!
-> Yeah. And? I need to check the current version of Doxygen, create files and directories, yada yada yada. I've thrown in the flags to run the right commands for the right operating system. Don't like it? Do it yourself.
+tHiS hAs `sYsTEm()` cALls!!!11!1!!!
+> Yeah. And? I need to check the current version of Doxygen, create files and directories, yada yada yada. I've thrown in the flags to run the right commands for the right operating system. Don't like it? Change it yourself.
 
 Where does the name `ghake` come from? 
 > Well, it's my name + `make`. Yes, very original, I know.
@@ -79,6 +85,8 @@ Cmake. Cmake exists.
 [here's a guide]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 
 [Download the latest release from the RELEASES page]: https://github.com/ghassanyounes/ghake/releases
+
+[www.ghassanyounes.com/ghake/]: http://www.ghassanyounes.com/ghake
 
 [my crappy website]: http://www.ghassanyounes.com
 

@@ -1,17 +1,18 @@
 /**
- * @file    doxy.cpp
+ * @file    doxygen.cpp
  * @author  Ghassan Younes
- * @date    January 27th 2020
+ * @date    Februaty 8th 2020
  * @par     email: ghassan\@ghassanyounes.com
  * 
  * @brief
- *  This file contains the function implementations for the doxygen namespace
+ *  This file contains function implementations for the doxygen namespace
  * 
  */
-#include <iostream>       /// cout, cin, endl, string
-#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
-#include <cstdlib>        /// system
-#include "functions.h"    /// doxypresent, gendoxy, editdoxy, inject, STATUS
+
+#include "functions.h"  /// doxypresent, gendoxy, editdoxy, STATUS
+#include <iostream>     /// cout, endl, string
+#include <fstream>      /// ofstream, ifstream, .open, .is_open(), .close()
+#include <cstdlib>      /// system
 
 namespace doxygen 
 {
@@ -24,7 +25,6 @@ namespace doxygen
     Doxyfile.close();
     return opclo;
   }
-
   STATUS gendoxy(void)
   {
     std::string doxvers;    /// Doxygen version
@@ -83,7 +83,7 @@ namespace doxygen
     {
       if (linetext.compare("PROJECT_NAME           = \"My Project\"") == 0)
       {
-        doxyfile << "PROJECT_NAME           = \"" << pinfo.project_name << "\"\n";
+        doxyfile << "PROJECT_NAME           = \"" << pinfo.get_pname() << "\"\n";
       }
       else if (linetext.compare("QUIET                  = NO") == 0) {
         doxyfile << "QUIET                  = YES\n";
@@ -156,32 +156,4 @@ namespace doxygen
     system("rm Doxyfile.*");
     return OK;
   }
-  
-  STATUS inject(const info pinfo)
-  {
-    std::string textin;                             /// Input text
-    std::ofstream makefile;                         /// Makefile to write to
-    const char* makefname = pinfo.makefile.c_str(); /// Name of makefile
-
-    textin  = "doxygen :\n";
-    textin += "\t-@$(ERASE) html/\n";
-    textin += "\t-@$(ERASE) latex/\n";
-    textin += "\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -\n";
-    textin += "\t( cat Doxyfile ; echo \"EXTRACT_ALL=NO\" ) | doxygen -\n\n";
-
-    textin += "doxyclean :\n";
-	  textin += "\t-@$(ERASE) Doxyfile\n";
-	  textin += "\t-@$(ERASE) html/\n";
-	  textin += "\t-@$(ERASE) latex/\n\n";
-    makefile.open(makefname, std::ios::app);  /// Open in append mode
-    if (makefile.is_open() == 0)
-    {
-      return FILE_ERR;
-    }
-    
-    makefile << textin;
-    makefile.close();
-    return OK;
-  }
-
 }

@@ -1,295 +1,224 @@
 /**
- * @file    main.cpp 
+ * @file    main.cpp
  * @author  Ghassan Younes
- * @date    January 27th 2020
+ * @date    Februaty 8th 2020
  * @par     email: ghassan\@ghassanyounes.com
  * 
  * @brief
- *  This program will autogenerate a makefile for your code, with custom CLI 
- *  arguments and a choice of memory checkers.
+ *  This file contains main() function for the memorydebug namespace
  * 
  */
-
-#include <iostream>       /// cout, endl, string
-#include <fstream>        /// ofstream, ifstream, .open, .is_open(), .close()
-#include <cstdlib>        /// system
-#include "functions.h"    /** Namespace    | Functions
-                           *  ------------ | -----------------------------------
-                           *  basemake     |  macros, targets, baserules, dotorules, generatedeps 
-                           *  compilation  |  compiler, compilargs, inject, COMPIL 
-                           *  doxygen      |  doxypresent, gendoxy, editdoxy,  inject
-                           *  memorydebug  |  debug, memdargs, inject, MMCHK 
-                           *  global       |  info, STATUS
-                           */
+#include <iostream>     /// cout, endl, string
+#include <getopt.h>     /// getopt_long for runtime arguments
+#include "functions.h"  /** Namespace/Class | Functions
+                         *  --------------- | -----------------------------------
+                         *  class info      |  ansi, set_compiler, set_debugger, set_filex, set_name, set_diff, set_runargs, set_false_supp, set_makex, inject, out, get_pname, get_filex, get_compname, get_comptype
+                         *  compilation     |  compinfo, COMPIL 
+                         *  doxygen         |  doxypresent, gendoxy, editdoxy
+                         *  memorydebug     |  MMCHK, mdinfo
+                         *  global          |  info, STATUS, help, gendirs
+                         */
 
 /**
  * 
- * \param argc
- *  Number of command-line swithces activated
+ * @brief
+ *  Main function. Calls all the other functions
  * 
- * \param argv
- *  Array of the commands input
+ * @param argc
+ *  Number of runtime arguments entered
  * 
- * \return
- *  0 -- Success; 1 -- Fail
+ * @param argv
+ *  Array of all the runtime arguments entered
+ * 
+ * @return 
+ *  0 == success; 1+ == fail
  * 
  */
-int main(int argc, const char* argv[])
+int main (int argc, char **argv)
 {
   using std::cout;
   using std::endl;
 
-  std::string quieton = "on";       // String "on" for argument check
-  std::string quietoff = "off";     // String "off" for argument check
-  std::string help = "help";        // String "help" for argument check
-  std::string yes = "yes";          // String "yes" for argument check
-  std::string makedirs;             // String for command to make directories
+  int runargs;                      /// Runtime arguments for getopt_long
+  int verbose_flag = false;         /// Verbose Flag
+  int makefile_ext = false;         /// Makefile Extension flag
+  int compiler = compilation::GPP;  /// Compiler flag
+  int memdbug = memorydebug::VALG;  /// Memory Debugger flag
+  std::string dname;                /// Diff file name
+  info pinfo;                       /// Class of type info; Stores info of everything
 
-  info pinfo;                       // Project Info struct type info
   
-  pinfo.makefile = "makefile";
-
-  if (argc == 2)
+  while (1)
   {
-    if (help.compare(argv[1]) == 0)
+    static struct option long_options[] =
     {
-      std::cout << "# ghake v2.2.0\n"
-                << "`ghake` is a C++ Program that writes makefiles for you, " 
-                << "based on programming standards of my C++ programming class."
-                << endl << endl 
-                << "ghake help menu:"
-                << endl
-                << "==========================================================="
-                << endl
-                << "##Usage"
-                << endl
-                << "-------"
-                << "Runtime Arguments for `ghake` are in the following order:"
-                << endl
-                << "ghake COMPILER MEMDBUG \"PRJNAME\" FILEX MAKEX DIFF_FILE " 
-                << "QUIET" << endl
-                << endl
-                << "### Compiler options" << endl
-                << "- `cc`      [UNIX C compiler] (partially tested)" << endl
-                << "- `cl`      [Microsoft C compiler] (not tested)" << endl
-                << "- `clang`   [LLVM C compiler]" << endl
-                << "- `clang++` [LLVM C++ compiler]" << endl
-                << "- `gcc`     [GNU C Compiler]" << endl
-                << "- `g++`     [GNU C++ Compiler]" << endl
-                << endl
-                << "### Memory Debugger " << endl
-                << "- `drmemory` [Dr. Memory] (not tested)" << endl
-                << "- `valgrind` [Valgrind]" << endl
-                << endl
-                << "### Project name" << endl
-                << "- Input project title in \"Double Quotation Marks\"" << endl
-                << endl
-                << "### Source code file extensions:"
-                << "- I've only tested `c` and `cpp` (*no `.` in runtime "
-                << "argument*), and the Compiler flags are set for C and C++ "
-                << "programs."  << endl
-                << endl
-                << "### Makefile file Extensions"
-                << "- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, " 
-                << "`.clg`, or `.unx`  -- make must be run as" 
-                << "\"`make -f makefile.###`\")"
-                << "- `no`  (file name of `makefile` will remain unchanged)" 
-                << endl << endl
-                << "### Diff File"
-                << "- `nodiff` will not inject a diff command" << endl
-                << "- Any other string (should include the `.txt` extension)" 
-                << "will run a check for a file matching that name. It will "
-                << "also pipe the output of your program into a text file "
-                << "called `myout.txt` when running make, so that it has "
-                << "something to diff." << endl
-                << endl
-                << "### Quiet mode?"
-                << "- `on`  (Will not repeat the input values to affirm them)"
-                << endl
-                << "- `off` (Will repeat the input values to affirm them)" 
-                << endl << endl;
-     return 0;
-    }
-    else 
-    {
-      return 1;
-    }
-  }
-  else if (argc != 8)
-  {
-    cout  << "Please enter the compiler, memory debugger, \"Project Name\", " 
-          << "Source code file extensions, "
-          << "whether to enable makefile extensions, diff file (with .txt) " 
-          << "and quiet on/off \n"
-          << " Run \'ghake help\' for valid entries." << endl
-          << "Exiting..." << endl;
-    return 1;
-  }
+    // These options set a flag.
+      {"verbose",  no_argument,        &verbose_flag, true                },
+      {"quiet",    no_argument,        &verbose_flag, false               },
 
-  cout  << "Ghake by Ghassan Younes (www.ghassanyounes.com/ghake/)" << endl 
-        << "Attention: This program will create a makefile calling ALL "
-        << "." << argv[4] << " files in the current directory. " << endl 
-        << endl;
+      {"makext",   no_argument,        &makefile_ext, true                },
 
-  if (quieton.compare(argv[7]) != 0 && quietoff.compare(argv[7]) != 0)
-  {
-    cout << "Invalid identifier for quiet mode. Must be \'on\' or \'off\'"
-         << endl;
-    return 1;
+      {"cc",       no_argument,        &compiler,     compilation::CC     },
+      {"cl",       no_argument,        &compiler,     compilation::CL     },
+      {"clang",    no_argument,        &compiler,     compilation::CLANG  },
+      {"clang++",  no_argument,        &compiler,     compilation::CLANGPP},
+      {"gcc",      no_argument,        &compiler,     compilation::GCC    },
+      {"g++",      no_argument,        &compiler,     compilation::GPP    },
+
+      {"valgrind", no_argument,        &memdbug,      memorydebug::VALG   },
+      {"drmemory", no_argument,        &memdbug,      memorydebug::DRMEM  },
+
+    // These options don’t set a flag. We distinguish them by their indices.
+      {"ansi",     no_argument,        0,             'a'                 },
+      {"help",     no_argument,        0,             'h'                 },
+      {"diff",     required_argument,  0,             'd'                 },
+      {"name",     required_argument,  0,             'n'                 },
+      {"ext",      required_argument,  0,             'e'                 },
+      {"mdsupp",   required_argument,  0,             's'                 },
+      {"run_args", required_argument,  0,             'r'                 },
+      {0, 0, 0, 0}
+    };
+    int option_index = 0; /// getopt_long stores the option index here
+
+    runargs = getopt_long (argc, argv, "abc:d:f:", long_options, &option_index);
+
+  // Detect the end of the options.
+    if (runargs == -1)
+      break;
+
+    switch (runargs)
+      {
+      case 'h':
+        help();
+        return 0;
+        break;
+
+      case 'a':
+        pinfo.ansi();
+        break;
+
+      case 'n':
+        pinfo.set_name(optarg);
+        break;
+
+      case 'd':
+        dname = optarg;
+        pinfo.set_diff(dname);
+        break;
+
+      case 'e':
+        pinfo.set_filex(optarg);
+        break;
+
+      case 'r':
+        pinfo.set_runargs(optarg);
+        break;
+
+      case 's':
+        pinfo.set_false_supp(optarg);
+      default:
+        break;
+      }
   }
   
-  if (quieton.compare(argv[7]) != 0)
+  pinfo.set_compiler((compilation::COMPIL)compiler);
+  pinfo.set_debugger((memorydebug::MMCHK)memdbug);
+
+  if (makefile_ext)
   {
-    cout << "You selected: "       << endl
-         << "Compiler:           " << argv[1] << endl
-         << "Memory Debugger:    " << argv[2] << endl
-         << "Project name:       " << argv[3] << endl
-         << "File extension:     " << argv[4] << endl
-         << "Makefile extension? " << argv[5] << endl
-         << "Diff File:          " << argv[6] << endl
-         << "Quiet mode?         " << argv[7] << endl;
+    pinfo.set_makex();
   }
 
-  pinfo.compinfo.compilername = argv[1];
-  pinfo.mdinfo.debugname      = argv[2];
-  pinfo.project_name          = argv[3];
-  pinfo.filex                 = argv[4];
-  pinfo.diff_file             = argv[6];
-
-#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
-  makedirs  = "if [ -d build ]; then echo \" \"; \n"; 
-  makedirs += "else mkdir build; ";
-  makedirs += "mkdir build/gnu; mkdir build/win; "; 
-  makedirs += "mkdir build/unx; mkdir build/clg; ";
-  makedirs += "fi";
-
-#elif defined (_WIN32) || defined (_WIN64)
-  makedirs = "IF exist build (echo " ") ELSE (mkdir build && mkdir build\\gnu ";
-  makedirs += "&& mkdir build\\clg && mkdir build\\unx &&mkdir build\\win)"
-#endif
-  system(makedirs.c_str());
-
-  if (doxygen::doxypresent())
+  if(doxygen::doxypresent())
   {
-    cout  << "Warning: Doxygen file present. I will not generate a new one!" 
-          << endl;
+    cout << "Doxyfile present, I will not generate a new file" << endl;
   } 
-  else 
+  else
   {
-    STATUS doxystat = doxygen::gendoxy();    // Status of generation of Doxyfile
-    if (doxystat == FAILED || doxystat == FILE_ERR)
+    switch (doxygen::gendoxy())
     {
-      return 1;
-    }
-    doxygen::editdoxy(pinfo);
-  }
+      case FILE_ERR:
+        cout << "Could not create Doxyfile. Is the directory writeable?";
+        return 1;
+        break;
 
-  pinfo.compinfo.comptype = compilation::compiler(pinfo);
-  if (yes.compare(argv[5])==0)
-  {
-    switch (pinfo.compinfo.comptype)
+      case FAILED: 
+        cout << "Could not create Doxyfile. Do you have the right version installed?";
+        return 1;
+        break;
+
+      case OK: 
+        if (verbose_flag)
+        {
+          cout << "Doxyfile generated" << endl;
+        }
+        break;
+
+      default:
+        cout << "Could not create Doxyfile. Is the directory writeable?";
+        return 1;
+        break;
+    }
+    switch (doxygen::editdoxy(pinfo))
     {
-    case  compilation::GCC:
-      pinfo.makefile += ".gnu";
-      break;
-    
-    case  compilation::GPP:
-      pinfo.makefile += ".gnu";
-      break;
-    
-    case compilation::CL:
-      pinfo.makefile += ".wcl";
-      break;
+      case FILE_ERR:
+        cout << "Could not edit Doxyfile. Did you delete it?";
+        return 1;
+        break;
 
-    case compilation::CLANG:
-      pinfo.makefile += ".clg";
-      break;
+      case FAILED: 
+        cout << "Could not create Doxyfile. Do you have the right version installed?";
+        return 1;
+        break;
 
-    case compilation::CLANGPP:
-      pinfo.makefile += ".clg";
-      break;
+      case OK: 
+        if (verbose_flag)
+        {
+          cout << "Doxyfile modified" << endl;
+        }
+        break;
 
-    case compilation::CC:
-      pinfo.makefile += ".unx";
-      break;
-
-    case compilation::ERR:
-      pinfo.makefile += ".ERROR";
-      break;
-
-    default:
-      break;
+      default:
+        cout << "Could not edit Doxyfile. Did you delete it?";
+        return 1;
+        break;
     }
   }
 
-  pinfo.compinfo.compilargs = compilation::compilargs(pinfo);
-  pinfo.mdinfo.debugtype    = memorydebug::memdebug(pinfo);
-  pinfo.mdinfo.debugargs    = memorydebug::memdargs(pinfo);
-  
-  // INJECTION INTO MAKEFILE BEGINS HERE  
+  gendirs();
+  pinfo.inject();
 
-  STATUS macrostat = basemake::macros(pinfo);       // Status of macro injection
-  if (macrostat == FILE_ERR || macrostat == FAILED)
+  // Output time
+  // If Quiet Mode is off
+  if (verbose_flag)
+  { 
+    cout << "     Verbose mode: On" << endl;
+    if (makefile_ext)
+    {
+      cout << "     Makefile ext: On" << endl;
+    }
+    else
+    {
+      cout << "     Makefile ext: Off" << endl;
+    }
+
+    pinfo.out();
+  }
+  else
   {
-    cout  << "Macro injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1; 
+    cout << "Quiet mode on" << endl;
   }
 
-  STATUS compstatus = compilation::inject(pinfo);   // Status of compiler inject
-  if (compstatus == FILE_ERR || compstatus == FAILED)
-  {
-    cout  << "Compiler injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1;
-  }
+  // Print any remaining command line arguments (not options). 
+  if (optind < argc)
+    {
+      cout << endl << "Invalid arguments: " << endl;
+      while (optind < argc)
+        cout << "  -> " << argv[optind++] << endl << endl;
+    }
 
-  STATUS targetstat = basemake::targets(pinfo);     // Status of target inject
-  if (targetstat == FILE_ERR || targetstat == FAILED)
-  {
-    cout  << "Macro injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1; 
-  }
-
-  STATUS dotostat = basemake::dotorules(pinfo);     // Status object file target
-  if (dotostat == FILE_ERR || dotostat == FAILED)
-  {
-    cout  << "File target injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1; 
-  }
-
-  STATUS doxystatus = doxygen::inject(pinfo);       // Status of doxygen targets
-  if (doxystatus == FILE_ERR || doxystatus == FAILED)
-  {
-    cout  << "Doxygen command injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1;
-  }
-
-  STATUS memstat = memorydebug::inject(pinfo);      // Status of memdbg inject
-  if (memstat == FILE_ERR || memstat == FAILED)
-  {
-    cout  << "Memory Debug command injection into makefile failed. Please make "
-          << "sure that the makefile exists and is writeable." << endl ;
-    return 1;
-  }
-
-  STATUS basetrg = basemake::baserules(pinfo);      // base rules/targets inject
-  if (basetrg == FILE_ERR || basetrg == FAILED)
-  {
-    cout  << "Base target injection into makefile failed. Please make sure "
-          << "that the makefile exists and is writeable." << endl ;
-    return 1;
-  }
-
-  cout  << "\nTasks completed. Please remember to add \'RUNARGS=\"...\"\' when " 
-        << "calling 'make' (or in the makefile) for any runtime arguments of "
-        << "the program. \nYou may also want to configure an \'ignore list\' " 
-        << "for your memory debugger to ignore false positives." << endl 
-        << endl
-        << "Thank you for using Ghake!\n\n";
+  cout  << endl 
+        << "Makefile generation complete! Thank you for using ghake." << endl;
 
   return 0;
 }
