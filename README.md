@@ -1,4 +1,5 @@
-# ghake v3.0.0 By Ghassan Younes ([www.ghassanyounes.com/ghake/])
+# ghake v3.0.0 By Ghassan Younes 
+([www.ghassanyounes.com/ghake/])
 `ghake` is a C++ Program that writes makefiles for you, based on programming standards of my C++ programming class.
 
 Run `ghake --help` for assistance concerning the command-line switches.
@@ -6,8 +7,7 @@ Run `ghake --help` for assistance concerning the command-line switches.
 > With v2.x.x+, upon downloading the source code, on Linux platforms you can run `sudo make install` to install `ghake` to  `/usr/bin`. It will also update your `PATH` to include `/usr/bin/ghake` as the directory where `ghake` is installed. Windows support might be coming soon, depends if I feel like it. Feel free to install to your 'Program Files' directory and update your `PATH` yourself ([here's a guide]). 
 
 > Versions 3.x.x+ now use dynamic runtime arguments, as detailed below, with defaults listed: 
-
-===========================================================
+-------
 ## Usage 
 -------
 ### Compiler options 
