@@ -61,7 +61,7 @@ Does this work on all operating systems?
 > This *should* work on Windows, macOS, and Linux - you just need to have the right compiler(s) and a UNIX/POSIX-compatible shell installed. I use Bash, but I don't think Zsh or Fish should have any issues. I also haven't tested this on Windows, so feel free to flag a new issue if something doesn't work.
 
 What's the difference between the versions?
-> Versions 1.x.x have been deprecated as I am only able to check through source files up to the first `.` in the name of the source file, even if it is not the period preceding the file extension. This means that names like `cabbage.pasta.cpp` are incompatible with `ghake`. Versions 2.x.x onwards use the most current version of C++ (as of February 1st 2020 that is c++17, though C++20 is coming soon). 2.x.x+ support having `.` anywhere in the name of a file. 
+> Versions 1.x.x have been deprecated as I am only able to check through source files up to the first `.` in the name of the source file, even if it is not the period preceding the file extension. This means that names like `cabbage.pasta.cpp` are incompatible with `ghake v1.x.x`. Versions 2.x.x onwards use the most current version of C++ (as of February 1st 2020 that is c++17, though C++20 is coming soon). 2.x.x+ support having `.` anywhere in the name of a file. 
 1.x.x is also only portable and must be compiled from source. You must add it to your PATH or add aliases to it to use it from the command line. 2.x.x+ have an 'installer' make target which will add it to your PATH and store it in the typical places upon compilation.
 
 Why aren't there any precompiled binaries yet? 
