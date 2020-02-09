@@ -11,6 +11,8 @@
 
 #include <iostream>
 
+void help();
+
 /**
  * 
  * \brief
@@ -31,16 +33,17 @@ namespace compilation
   *  Which compiler is being used
   * 
   */
-  enum COMPIL {
-    GCC,
-    GPP,
-    MICROSOFT,
-    CLANG,
-    CLANGPP,
-    UNIX,
-    ERR
+  enum COMPIL
+  {
+  CC, 
+  CL,
+  CLANG,
+  CLANGPP,
+  GCC,
+  GPP,
+  ERR
   };
-
+  
   /**
    *
    * \brief 

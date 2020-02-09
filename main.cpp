@@ -53,7 +53,7 @@ int main(int argc, const char* argv[])
   {
     if (help.compare(argv[1]) == 0)
     {
-      std::cout << "# ghake\n"
+      std::cout << "# ghake v2.2.0\n"
                 << "`ghake` is a C++ Program that writes makefiles for you, " 
                 << "based on programming standards of my C++ programming class."
                 << endl << endl 
@@ -88,9 +88,6 @@ int main(int argc, const char* argv[])
                 << "- I've only tested `c` and `cpp` (*no `.` in runtime "
                 << "argument*), and the Compiler flags are set for C and C++ "
                 << "programs."  << endl
-                << "**Filenames cannot currently have `\'.\'` anywhere other "
-                << "than right before the file extension." 
-                << "I'm working on fixing it.**"
                 << endl
                 << "### Makefile file Extensions"
                 << "- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, " 
@@ -129,7 +126,7 @@ int main(int argc, const char* argv[])
     return 1;
   }
 
-  cout  << "Ghake by Ghassan Younes (www.ghassanyounes.com)" << endl 
+  cout  << "Ghake by Ghassan Younes (www.ghassanyounes.com/ghake/)" << endl 
         << "Attention: This program will create a makefile calling ALL "
         << "." << argv[4] << " files in the current directory. " << endl 
         << endl;
@@ -200,7 +197,7 @@ int main(int argc, const char* argv[])
       pinfo.makefile += ".gnu";
       break;
     
-    case compilation::MICROSOFT:
+    case compilation::CL:
       pinfo.makefile += ".wcl";
       break;
 
@@ -212,7 +209,7 @@ int main(int argc, const char* argv[])
       pinfo.makefile += ".clg";
       break;
 
-    case compilation::UNIX:
+    case compilation::CC:
       pinfo.makefile += ".unx";
       break;
 

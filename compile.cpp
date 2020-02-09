@@ -27,11 +27,11 @@ namespace compilation
     } 
     else if (pinfo.compinfo.compilername.compare("cl") == 0)
     {
-      return MICROSOFT;
+      return CL;
     } 
     else if (pinfo.compinfo.compilername.compare("cc") == 0)
     {
-      return UNIX;
+      return CC;
     } 
     else if(pinfo.compinfo.compilername.compare("clang") == 0)
     {
@@ -59,7 +59,7 @@ namespace compilation
       return "-g  -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
       break;
 
-    case MICROSOFT:
+    case CL:
       return "-W4 -WX -EHa -Za -Fehw-ms.exe -D_CRT_SECURE_NO_DEPRECATE \n";
       break;
 
@@ -71,7 +71,7 @@ namespace compilation
       return "-g -O0 -v -std=c++98 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
       break;
 
-    case UNIX:
+    case CC:
       return "-g -O0 -ansi -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o  \n";
       break;
 
@@ -102,7 +102,7 @@ namespace compilation
         textin += "g++\n";
         break;
       
-      case MICROSOFT: 
+      case CL: 
         textin += "cl\n";
         break;
       
@@ -114,7 +114,7 @@ namespace compilation
         textin += "clang++\n";
         break;
       
-      case UNIX: 
+      case CC: 
         textin += "cc\n";
         break;
       
@@ -147,7 +147,7 @@ namespace compilation
         textin += "gnu/\n";
         break;
       
-      case MICROSOFT: 
+      case CL: 
         textin += "win/\n";
         break;
       
@@ -159,7 +159,7 @@ namespace compilation
         textin += "clg/\n";
         break;
       
-      case UNIX: 
+      case CC: 
         textin += "unx/\n";
         break;
       

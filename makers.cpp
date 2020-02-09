@@ -18,7 +18,7 @@
 
 namespace basemake
 {
-  using idx_t = std::string::size_type;             /// Simpilified name
+  using idx_t = std::string::size_type;             ///< Simpilified name
   STATUS macros(const info pinfo)
   {
     std::string exec = pinfo.project_name;          /// Executable (const pinfo)
@@ -289,7 +289,7 @@ namespace basemake
         command = "g++ -MM ";
         break;
       
-      case compilation::MICROSOFT: 
+      case compilation::CC: 
         command = "cl /I ";
         break;
       
@@ -301,7 +301,7 @@ namespace basemake
         command = "clang++ --user-dependencies ";
         break;
       
-      case compilation::UNIX: 
+      case compilation::CL: 
         command = "cc -MM ";
         break;
       
