@@ -25,23 +25,23 @@ Run `ghake --help` for assistance concerning the command-line switches.
 - `--drmemory` [Dr. Memory] (not tested)
 - `--valgrind` [Valgrind] (default)
 
-### False Leak Suppression for Memory Debugger (--mdsupp 'path/to/file')
+### False Leak Suppression for Memory Debugger (`--mdsupp 'path/to/file'`)
 - Tells the memory debugger to ignore specific memory leaks that are not the result of your program. Must be configured prior to compiling.
 
-### Project name (--name "PRJNAME") 
+### Project name (`--name "PRJNAME"`) 
 - Input project title in "Double Quotation Marks"
 
-### Runtime Arguments (--run_args "ARGS") 
+### Runtime Arguments (`--run_args "ARGS"`) 
 - Input runtime arguments for generated program in "Double Quotation Marks"
 
-### Source code file extensions (--ext EXT): 
+### Source code file extensions (`--ext EXT`): 
 - I've only tested `--ext c` and `--ext cpp` (*no `.` in runtime argument*), and the Compiler flags are set for C and C++ programs. Default is `cpp`. 
 
-### Makefile file Extensions (--makext)
-- `yes` (`makefile` will be appended with `.gnu`, `.wcl`, `.clg`, or `.unx`  -- make must be run as \`make -f makefile.###`\)
-- `no`  (file name of `makefile` will remain unchanged) (default)
+### Makefile file Extensions (`--makext`)
+- `--makext` (`makefile` will be appended with `.gnu`, `.wcl`, `.clg`, or `.unx`  -- make must be run as \`make -f makefile.###`\)
+- nothing  (file name of `makefile` will remain unchanged) (default)
 
-### Diff File (--diff "DIFF_FILE") 
+### Diff File (`--diff "DIFF_FILE"`) 
 - `nodiff` will not inject a diff command (default)
 - Any other string (should include the file extension (normally `.txt`)) will run a check for a file matching that name. It will also pipe the output of your program into a text file called `myout.txt` when running make, so that it has something to diff.
 
