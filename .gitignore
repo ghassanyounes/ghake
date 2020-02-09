@@ -47,6 +47,7 @@ latex/
 # Build and release dirs
 build/
 RELEASE/
+dev/
 
 # README .txt for zip
 readme.txt
