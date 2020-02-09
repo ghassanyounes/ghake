@@ -1,5 +1,6 @@
 # ghake v3.0.0 By Ghassan Younes 
 ([www.ghassanyounes.com/ghake/])
+
 `ghake` is a C++ Program that writes makefiles for you, based on programming standards of my C++ programming class.
 
 Run `ghake --help` for assistance concerning the command-line switches.
