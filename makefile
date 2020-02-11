@@ -36,7 +36,6 @@ run : $(OUTDIR)$(EXE) $(OBJECTS)
 	You can find the built executable at $(OUTDIR)$(EXE)"
 
 install : $(OUTDIR)$(EXE) $(OBJECTS)
-	-mkdir /usr/bin/ghake
 	cp $(OUTDIR)$(EXE) /usr/bin/ghake
 
 $(OUTDIR)$(EXE) : $(OBJECTS) makefile
