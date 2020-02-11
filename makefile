@@ -29,8 +29,8 @@ RUNARGS=--help
 	echo -e ' --no-print-directory' | $(MAKE) run
 
 run : $(OUTDIR)$(EXE) $(OBJECTS)
-	$(MAKE) doxygen
-	$(MAKE) memchk
+#	$(MAKE) doxygen
+#	$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS) 
 	clear; echo "Made executable successfully. \
 	You can find the built executable at $(OUTDIR)$(EXE)"
