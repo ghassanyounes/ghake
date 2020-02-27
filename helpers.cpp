@@ -383,7 +383,7 @@ void info::inject()
   dependencylist.open("dependencies.txt");
   while(getline(dependencylist,linetext))
   {
-    std::string target(sizeof(linetext), '\0');
+    std::string target(linetext.size(), '\0');
     for (int i = 0; linetext[i] != '.'; i++)
     {
       target[i] = linetext[i];
