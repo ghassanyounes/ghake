@@ -1,7 +1,7 @@
 /**
  * @file    main.cpp
  * @author  Ghassan Younes
- * @date    Februaty 8th 2020
+ * @date    March 19th 2020
  * @par     email: ghassan\@ghassanyounes.com
  * 
  * @brief
@@ -208,7 +208,7 @@ int main (int argc, char **argv)
       cout << "     Makefile ext: Off" << endl;
     }
 
-    pinfo.out();
+    cout << pinfo << endl;
   }
   else
   {

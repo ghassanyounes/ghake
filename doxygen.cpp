@@ -1,7 +1,7 @@
 /**
  * @file    doxygen.cpp
  * @author  Ghassan Younes
- * @date    Februaty 8th 2020
+ * @date    March 19th 2020
  * @par     email: ghassan\@ghassanyounes.com
  * 
  * @brief
@@ -13,6 +13,7 @@
 #include <iostream>     /// cout, endl, string
 #include <fstream>      /// ofstream, ifstream, .open, .is_open(), .close()
 #include <cstdlib>      /// system
+#include <filesystem>   /// rename, remove
 
 namespace doxygen 
 {
@@ -29,20 +30,12 @@ namespace doxygen
   {
     std::string doxvers;    /// Doxygen version
     std::ifstream version;  /// version.txt file
-#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
-    system("touch doxyversion.txt; doxygen --version > doxyversion.txt");
-#elif defined (_WIN32) || defined (_WIN64)
     system("doxygen --version > doxyversion.txt");
-#endif
     version.open ("doxyversion.txt");
     getline(version,doxvers);
     version.close();
 
-#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
-    system("rm doxyversion.txt");
-#elif defined (_WIN32) || defined (_WIN64)
-    system("del doxyversion.txt");
-#endif
+    std::filesystem::remove("doxyversion.txt");
 
     std::cout << "Doxygen version is " << doxvers << std::endl;
 
@@ -64,11 +57,7 @@ namespace doxygen
     std::string linetext;   /// Line of Doxyfile that was read in
     std::ifstream doxyin;   /// Input Doxyfile
     std::ofstream doxyfile; /// Output Doxyfile
-#if defined (unix) || defined (__unix) || defined(__unix__) || defined (__APPLE__) || defined (__MACH__)
-    system("mv Doxyfile Doxyfile.old");
-#elif defined (_WIN32) || defined (_WIN64)
-    system("move Doxyfile Doxyfile.old");
-#endif
+    std::filesystem::rename("Doxyfile", "Doxyfile.old");
     doxyin.open("Doxyfile.old");
     doxyfile.open ("Doxyfile");
 
@@ -153,7 +142,8 @@ namespace doxygen
     }
     doxyfile.close();
     doxyin.close();
-    system("rm Doxyfile.*");
+    std::filesystem::remove("Doxyfile.old");
+    //system("rm Doxyfile.*");
     return OK;
   }
 }

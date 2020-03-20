@@ -1,7 +1,7 @@
 /**
  * @file    functions.h 
  * @author  Ghassan Younes
- * @date    February 8th 2020
+ * @date    March 19th 2020
  * @par     email: ghassan\@ghassanyounes.com
  * 
  * @brief
@@ -10,6 +10,7 @@
  */
 
 #include <iostream> /// string
+#define VERSION "4.0.0"
 
 /**
  * 
@@ -140,7 +141,6 @@ typedef class info{
   void set_false_supp(std::string);
   void set_makex();
   void inject();
-  void out();
 
   ///Gettor functions
   std::string get_diff() const;
@@ -148,6 +148,9 @@ typedef class info{
   std::string get_filex() const;
   std::string get_compname() const;
   compilation::COMPIL get_comptype() const;
+
+  ///Friend functions
+  friend std::ostream& operator<<(std::ostream &os, const info& rhs);
 
   private:
   bool is_ansi = false;             ///< --ansi flag or equivalent for compilers

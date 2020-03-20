@@ -17,11 +17,11 @@ CC=g++
 
 P=P
 
-CFLAGS=-g -O0 -pedantic -Weffc++ -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o 
+CFLAGS=-g -O0 -pedantic -Weffc++ -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -lstdc++fs -std=c++17 -o 
 
 OBJECTS=$(OUTDIR)compiler.o $(OUTDIR)doxygen.o $(OUTDIR)helpers.o $(OUTDIR)main.o $(OUTDIR)memdebug.o 
 
-RUNARGS=--makext --verbose --Weffc++ --name Yeet --clang++ --ext cpp --mdsupp /home/ghassan/bin/false.supp --run_args "--help" --diff readme.txt
+RUNARGS=--makext --verbose --Weffc++ --name ghake --g++ --ext cpp --mdsupp /home/ghassan/bin/false.supp --run_args "--help" --diff readme.txt
 
 # TARGETS ======================================================================
 
