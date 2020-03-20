@@ -27,6 +27,17 @@ void info::ansi()
 /**
  * 
  * @brief
+ *  Sets the -Weffc++ flag if needed for the g++ compiler
+ * 
+ */
+void info::effective()
+{
+  is_effective = true;
+}
+
+/**
+ * 
+ * @brief
  *  Sets the compiler
  * 
  * @param compiler
@@ -77,6 +88,10 @@ void info::set_compiler(compilation::COMPIL compiler)
       {
         compinfo.compilargs += "-std=c++98 ";
       }
+      if (is_effective)
+      {
+        compinfo.compilargs += "-Weffc++ ";
+      }
       compinfo.compilargs += "-pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicate-enum -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n"; //-c is applicable for .o generation
       break;
       
@@ -101,6 +116,10 @@ void info::set_compiler(compilation::COMPIL compiler)
       {
         compinfo.compilargs += "-ansi ";
       }
+      if (is_effective)
+      {
+        compinfo.compilargs += "-Weffc++ ";
+      }
       compinfo.compilargs += "-pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
       break;
 
@@ -112,6 +131,10 @@ void info::set_compiler(compilation::COMPIL compiler)
       if (is_ansi)
       {
         compinfo.compilargs += "-ansi ";
+      }
+      if (is_effective)
+      {
+        compinfo.compilargs += "-Weffc++ ";
       }
       compinfo.compilargs += "-pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o \n";
       break;

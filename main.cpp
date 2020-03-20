@@ -42,9 +42,8 @@ int main (int argc, char **argv)
   int runargs;                      /// Runtime arguments for getopt_long
   int verbose_flag = false;         /// Verbose Flag
   int makefile_ext = false;         /// Makefile Extension flag
-  int compiler = compilation::GPP;  /// Compiler flag
-  int memdbug = memorydebug::VALG;  /// Memory Debugger flag
-  std::string dname;                /// Diff file name
+  int compiler = compilation::GPP;  /// Compiler flag default g++
+  int memdbug = memorydebug::VALG;  /// Memory Debugger flag default valgrind
   info pinfo;                       /// Class of type info; Stores info of everything
 
   
@@ -70,6 +69,7 @@ int main (int argc, char **argv)
 
     // These options don’t set a flag. We distinguish them by their indices.
       {"ansi",     no_argument,        0,             'a'                 },
+      {"Weffc++",  no_argument,        0,             'f'                 },
       {"help",     no_argument,        0,             'h'                 },
       {"diff",     required_argument,  0,             'd'                 },
       {"name",     required_argument,  0,             'n'                 },
@@ -93,6 +93,10 @@ int main (int argc, char **argv)
         return 0;
         break;
 
+      case 'f':
+        pinfo.effective();
+        break;
+
       case 'a':
         pinfo.ansi();
         break;
@@ -102,8 +106,10 @@ int main (int argc, char **argv)
         break;
 
       case 'd':
-        dname = optarg;
-        pinfo.set_diff(dname);
+        //Debugging stuff
+        //cout << "diff file is: " << optarg << endl;
+        pinfo.set_diff(optarg);
+        //cout << "diff file set to: " << pinfo.get_diff() << endl;
         break;
 
       case 'e':

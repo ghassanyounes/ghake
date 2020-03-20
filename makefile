@@ -11,29 +11,29 @@ OUTDIR=build/gnu/
 
 MDEBUG=valgrind
 
-MDARGS=-q --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes   --suppressions=/home/ghassan/bin/false.supp
+MDARGS=-q --leak-check=full --show-reachable=yes --tool=memcheck --trace-children=yes  --suppressions=/home/ghassan/bin/false.supp
 
 CC=g++
 
 P=P
 
-CFLAGS=-g -O0 -pedantic -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o 
+CFLAGS=-g -O0 -pedantic -Weffc++ -Wall -Wextra -Werror -Wall -Wextra -Werror -Wconversion -Winline -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wcast-qual -Wswitch-default -Wswitch-enum -Wunreachable-code -Wduplicated-cond -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wpedantic -o 
 
 OBJECTS=$(OUTDIR)compiler.o $(OUTDIR)doxygen.o $(OUTDIR)helpers.o $(OUTDIR)main.o $(OUTDIR)memdebug.o 
 
-RUNARGS=--help
+RUNARGS=--makext --verbose --Weffc++ --name Yeet --clang++ --ext cpp --mdsupp /home/ghassan/bin/false.supp --run_args "--help" --diff readme.txt
 
 # TARGETS ======================================================================
 
 : 
-	echo -e ' --no-print-directory' | $(MAKE) run
+	$(MAKE) run --no-print-directory -j
 
 run : $(OUTDIR)$(EXE) $(OBJECTS)
 #	$(MAKE) doxygen
 #	$(MAKE) memchk
 	./$(OUTDIR)$(EXE) $(RUNARGS) 
-	clear; echo "Made executable successfully. \
-	You can find the built executable at $(OUTDIR)$(EXE)"
+	@echo -e 'Made executable successfully.'
+	@echo -e 'You can find the built executable at $(OUTDIR)$(EXE)'
 
 install : $(OUTDIR)$(EXE) $(OBJECTS)
 	cp $(OUTDIR)$(EXE) /usr/bin/ghake

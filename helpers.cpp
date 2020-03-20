@@ -20,6 +20,48 @@ using std::endl;
 /**
  * 
  * @brief
+ *  Constructor for strcut of type compinfo
+ * 
+ * @param compil
+ *  Name of compiler
+ * 
+ * @param descr
+ *  Description of compiler
+ * 
+ * @param name 
+ *  Name of compiler
+ * 
+ * @param args
+ *  Compiler arguments
+ * 
+ */
+compilation::compinfo::compinfo(compilation::COMPIL compil,
+                                std::string descr,
+                                std::string name,
+                                std::string args)
+                                :
+                                comptype (compil),
+                                description (descr),
+                                compilername (name),
+                                compilargs (args) {}
+
+memorydebug::mdinfo::mdinfo(MMCHK type,
+                            std::string name,
+                            std::string args,
+                            std::string supp,
+                            std::string supp_file
+                            )
+                            :
+                            debugtype (type),
+                            debugname (name),
+                            debugargs (args),
+                            false_supp (supp),
+                            false_supp_file (supp_file)
+                            {}
+
+/**
+ * 
+ * @brief
  *  Constructor for class of type info
  * 
  * @param name
@@ -50,16 +92,15 @@ info::info( std::string name,
             std::string filex, 
             std::string diff,
             compilation::COMPIL compiler,
-            memorydebug::MMCHK debugger)
-{
-  project_name = name ;
-  makefile_name = makefile;
-  runargs = args;
-  filext = filex;
-  diff_file = diff;
-  compinfo.comptype = compiler;
-  mdinfo.debugtype = debugger; 
-}
+            memorydebug::MMCHK debugger) 
+            :
+            project_name (name), 
+            makefile_name (makefile),
+            filext (filex),
+            diff_file (diff),
+            runargs (args),
+            compinfo (compiler, "", "", ""),
+            mdinfo (debugger, "", "", "", ""){}
 
 /**
  * 
@@ -73,6 +114,20 @@ info::info( std::string name,
 void info::set_diff(std::string diff)
 {
   diff_file = diff;
+}
+
+/**
+ * 
+ * @brief
+ *  Returns the name of the diff file
+ * 
+ * @param diff
+ *  Name of diff file
+ * 
+ */
+std::string info::get_diff() const
+{
+  return diff_file;
 }
 
 /**
@@ -292,7 +347,7 @@ void info::inject()
            << "MDARGS=" << mdinfo.debugargs << mdinfo.false_supp << endl
            << endl;
   
-  if (diff_file.compare("nodiff") == 0)
+  if (diff_file.compare("nodiff") != 0)
   {
     makefile << "OUTFILE=myout.txt" << endl 
              << endl 
@@ -314,8 +369,6 @@ void info::inject()
       if (linetext.empty()) continue;
       
       std::string target(linetext.size(), '\0') ;
-      // Note: the above will not compile prior to C++11,
-      // because I'm using uniform initializer brace syntax.
       
       idx_t last_dot = std::string::npos;
       
@@ -363,19 +416,24 @@ void info::inject()
            << "# TARGETS ======================================================================" << endl
            << endl
            << ": " << endl
-           << "\techo \" --no-print-directory\" | $(MAKE) run" << endl
+           << "\t$(MAKE) run --no-print-directory -j" << endl
            << endl
            << "run : $(OUTDIR)$(EXE) $(OBJECTS)" << endl
-           << "\t$(MAKE) doxygen" << endl
-           << "\t$(MAKE) memchk" << endl
-           << "\t./$(OUTDIR)$(EXE) $(RUNARGS) ";
-  if (diff_file.compare("nodiff") == 0)
-  {
-    makefile << "> $(OUTFILE) " << endl
-             << "\t$(MAKE) diff " ;
-  }
+           << "\t@echo -e \"Running program ...\"" << endl
+           << "\t./$(OUTDIR)$(EXE) $(RUNARGS) " << endl;
+              if (diff_file.compare("nodiff") != 0)
+              {
+                makefile << "\t./$(OUTDIR)$(EXE) $(RUNARGS) > $(OUTFILE) " << endl;
+              }
+  makefile << "\t$(MAKE) doxygen" << endl
+           << "\t$(MAKE) memchk" << endl;
+              if (diff_file.compare("nodiff") != 0)
+              {
+                makefile << "\t$(MAKE) diff " << endl
+                         << "\t$(MAKE) diffsupp " << endl;
+              }
 
-  makefile << endl << endl 
+  makefile << endl
            << "$(OUTDIR)$(EXE) : $(OBJECTS) " << makefile_name << endl
            << "\t$(CC) $(OBJECTS) $(CFLAGS) $(OUTDIR)$(EXE)" << endl
            << endl;
@@ -397,6 +455,7 @@ void info::inject()
 
   // Base Targets
   makefile << "memchk : $(OUTDIR)$(EXE) $(OBJECTS)" << endl
+           << "\t@echo -e \'\\n\\n\\n Checking for memory leaks\'" << endl
            << "\t$(MDEBUG) $(MDARGS) $(OUTDIR)$(EXE) $(RUNARGS)" << endl
            << endl;
 
@@ -408,14 +467,21 @@ void info::inject()
            << "\t$(MAKE)" << endl
            << endl;
 
-  if (diff_file.compare("nodiff") == 0)
+  if (diff_file.compare("nodiff") != 0)
   {
     makefile << "diff : $(OUTDIR)$(EXE) $(OUTFILE)" << endl 
+             << "\t@echo -e \'\\n\\n\\n Running Diff\'" << endl
+             << "\tdiff -y --color=always $(OUTFILE) $(DIFF_FILE)" << endl
+             << endl;
+
+    makefile << "diffsupp : $(OUTDIR)$(EXE) $(OUTFILE)" << endl 
+           << "\t@echo -e \'\\n\\n\\n Running Diff: Common Lines Suppressed\'" << endl
              << "\tdiff -y --color=always --suppress-common-lines $(OUTFILE) $(DIFF_FILE)" << endl
              << endl;
   }
 
   makefile << "doxygen :" << endl
+           << "\t@echo -e \'\\n\\n\\n Running dOxygen\'" << endl
            << "\t-@$(ERASE) html/" << endl
            << "\t-@$(ERASE) latex/" << endl
            << "\t( cat Doxyfile ; echo \"EXTRACT_ALL=YES\" ) | doxygen -" << endl
@@ -450,7 +516,15 @@ void info::out()
   {
     cout  << "     ISO/ANSI std: " << "No" << endl;
   }
-  if (diff_file.compare("nodiff") != 0)
+  if (is_effective && (compinfo.comptype == compilation::GPP || compinfo.comptype == compilation::CLANGPP))
+  {
+    cout  << "    Effective C++: " << "Yes" << endl;
+  }
+  else 
+  {
+    cout  << "    Effective C++: " << "No" << endl;
+  }
+  if (diff_file.compare("nodiff") == 0)
   {
     cout  << "        Diff File: " << "None" << endl;
   }

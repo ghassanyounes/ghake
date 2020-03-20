@@ -64,6 +64,10 @@ namespace compilation
    * 
    */
   typedef struct compinfo{
+    compinfo( COMPIL compil,
+              std::string descr,
+              std::string name,
+              std::string args);
     COMPIL comptype;            ///< Which compiler to use
     std::string description;    ///< Description of compiler for output
     std::string compilername;   ///< String containing name of compiler command
@@ -94,6 +98,12 @@ namespace memorydebug
    * 
    */
   typedef struct mdinfo{
+    mdinfo( MMCHK type,
+            std::string name,
+            std::string args,
+            std::string supp,
+            std::string supp_file
+    );
     MMCHK debugtype;            ///< Which memory debugger is requested
     std::string debugname;      ///< String containing name of memory debugger
     std::string debugargs;      ///< Memory debugger command line args
@@ -120,6 +130,7 @@ typedef class info{
   
   /// Settor functions
   void ansi();
+  void effective();
   void set_compiler(compilation::COMPIL compiler);
   void set_debugger(memorydebug::MMCHK debugger);
   void set_filex(std::string);
@@ -132,6 +143,7 @@ typedef class info{
   void out();
 
   ///Gettor functions
+  std::string get_diff() const;
   std::string get_pname() const;
   std::string get_filex() const;
   std::string get_compname() const;
@@ -139,6 +151,7 @@ typedef class info{
 
   private:
   bool is_ansi = false;             ///< --ansi flag or equivalent for compilers
+  bool is_effective = false;        ///< -Weffc++ flag for clang++ and g++
   std::string project_name;         ///< Name of project
   std::string makefile_name;        ///< Name of makefile
   std::string filext;               ///< File extensions to use

@@ -20,6 +20,9 @@ Run `ghake --help` for assistance concerning the command-line switches.
 ### ANSI/ISO standard 
 - `--ansi` adds the equivalent flag for each compiler to enforce the ANSI/ISO standard (`C89`; `C++98`)
 
+### Effective C++ 
+- `--Weffc++` adds the same flag for the `g++` and `clang++` compiler to enforce the Effective C++ standard
+
 ### Memory Debugger 
 - `--drmemory` [Dr. Memory] (not tested)
 - `--valgrind` [Valgrind] (default)
